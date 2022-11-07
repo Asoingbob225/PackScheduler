@@ -1,0 +1,2 @@
+SOC211,Community and Health,601,3,kjicha,33,A
+ST371,Intro to Prob and Dist Theory,001,3,mtang,45,TH,1145,1300

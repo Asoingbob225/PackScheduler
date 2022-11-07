@@ -1,0 +1,37 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "https://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="800" height="600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="122.5" cy="111.5" rx="30" ry="30"/>
+	<text x="103.5" y="117.5" font-family="Times New Roman" font-size="20">Start</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="370.5" cy="111.5" rx="30" ry="30"/>
+	<text x="364.5" y="117.5" font-family="Times New Roman" font-size="20">L</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="370.5" cy="241.5" rx="30" ry="30"/>
+	<text x="363.5" y="247.5" font-family="Times New Roman" font-size="20">D</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="370.5" cy="351.5" rx="30" ry="30"/>
+	<text x="364.5" y="357.5" font-family="Times New Roman" font-size="20">S</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="122.5" cy="241.5" rx="30" ry="30"/>
+	<text x="101.5" y="247.5" font-family="Times New Roman" font-size="20">END</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="122.5" cy="241.5" rx="24" ry="24"/>
+	<polygon stroke="black" stroke-width="1" points="152.5,111.5 340.5,111.5"/>
+	<polygon fill="black" stroke-width="1" points="340.5,111.5 332.5,106.5 332.5,116.5"/>
+	<text x="169.5" y="132.5" font-family="Times New Roman" font-size="20">letter/lettercount++</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 397.297,98.275 A 22.5,22.5 0 1 1 397.297,124.725"/>
+	<text x="443.5" y="117.5" font-family="Times New Roman" font-size="20">letter[lettercount&lt;=4]/lettercount++</text>
+	<polygon fill="black" stroke-width="1" points="397.297,124.725 400.83,133.473 406.708,125.382"/>
+	<polygon stroke="black" stroke-width="1" points="370.5,141.5 370.5,211.5"/>
+	<polygon fill="black" stroke-width="1" points="370.5,211.5 375.5,203.5 365.5,203.5"/>
+	<text x="375.5" y="182.5" font-family="Times New Roman" font-size="20">Digit/digitcount++</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 397.297,228.275 A 22.5,22.5 0 1 1 397.297,254.725"/>
+	<text x="443.5" y="247.5" font-family="Times New Roman" font-size="20">digit[digitcount&lt;3]/digitcount++</text>
+	<polygon fill="black" stroke-width="1" points="397.297,254.725 400.83,263.473 406.708,255.382"/>
+	<polygon stroke="black" stroke-width="1" points="370.5,271.5 370.5,321.5"/>
+	<polygon fill="black" stroke-width="1" points="370.5,321.5 375.5,313.5 365.5,313.5"/>
+	<text x="208.5" y="302.5" font-family="Times New Roman" font-size="20">letter[digitcount=3]</text>
+	<polygon stroke="black" stroke-width="1" points="340.5,241.5 152.5,241.5"/>
+	<polygon fill="black" stroke-width="1" points="152.5,241.5 160.5,246.5 160.5,236.5"/>
+	<text x="195.5" y="232.5" font-family="Times New Roman" font-size="20">End of Input</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 340.723,354.988 A 241.596,241.596 0 0 1 139.901,265.914"/>
+	<polygon fill="black" stroke-width="1" points="139.901,265.914 141.056,275.277 148.824,268.979"/>
+	<text x="124.5" y="356.5" font-family="Times New Roman" font-size="20">End of Input</text>
+</svg>

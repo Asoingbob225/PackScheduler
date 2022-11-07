@@ -1,0 +1,13 @@
+- missing javadoc: basically every element
+- RegistrationManager should be static
+- indentation not standard
+- constructor needs to be public
+- getCurrentUser is not implemented
+- hashPW needs documentation
+- two scary bugs on clearData
+	- read unwritted field (x2)
+- scary bug on login	
+	- read unwritted field
+- login needs some documentation
+- logout's implementation is unclear
+- 
