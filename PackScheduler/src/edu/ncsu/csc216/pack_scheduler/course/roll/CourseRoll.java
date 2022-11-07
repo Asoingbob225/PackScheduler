@@ -1,6 +1,8 @@
 package edu.ncsu.csc216.pack_scheduler.course.roll;
 
 
+import java.util.List;
+
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
 
@@ -56,6 +58,10 @@ public class CourseRoll {
 			throw new IllegalArgumentException("Invalid enrollment cap");
 		}
 		this.enrollmentCap = enrollmentCap;
+		if(roll != null) {
+			roll.setcapacity(enrollmentCap);
+		}
+		
 	}
 	
 	/**
