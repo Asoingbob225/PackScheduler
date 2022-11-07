@@ -81,6 +81,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @param index   the index of the node to change
 	 * @param newData the new data to set
 	 * @return the data previously in the node
+	 * @throws NullPointerException      if object is null
+	 * @throws IndexOutOfBoundsException if index is negative or >= size of list
+	 * @throws IllegalArgumentException  if object is a duplicate
 	 */
 	@Override
 	public E set(int index, E newData) {
@@ -88,24 +91,24 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			throw new NullPointerException();
 		}
 
-		if (index < 0 || index >= size() - 1) {
+		if (index < 0 || index > size() - 1) {
 			throw new IndexOutOfBoundsException();
 		}
 
 		ListNode temp = front;
 		E oldData = null;
 
-		for (int i = 0; i < size() - 1; i++) {
+		for (int i = 0; i < size(); i++) {
+			if (newData.equals(temp.data)) {
+				throw new IllegalArgumentException();
+			}
+
 			if (i == index) {
 				oldData = temp.data;
 				temp.data = newData;
 			}
 
 			temp = temp.next;
-
-			if (newData.equals(temp.data)) {
-				throw new IllegalArgumentException();
-			}
 		}
 
 		return oldData;
@@ -139,27 +142,30 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			throw new IllegalArgumentException();
 		}
 
-		if (front == null) {
-			front = new ListNode(newData);
-		}
-
 		ListNode temp = front;
 		for (int i = 0; i < size(); i++) {
 			if (newData.equals(temp.data)) {
 				throw new IllegalArgumentException();
 			}
-
-			if (temp.next == null) {
-				temp.next = new ListNode(newData);
-				break;
-			}
-
-			if (i == index - 1) {
-				ListNode newNode = new ListNode(newData, temp.next);
-				temp.next = newNode;
-			}
-
 			temp = temp.next;
+		}
+
+		if (index == 0) {
+			front = new ListNode(newData, front);
+			size++;
+			return;
+		}
+
+		temp = front;
+		for (int i = 0; i < index - 1; i++) {
+			temp = temp.next;
+		}
+
+		if (temp.next == null) {
+			temp.next = new ListNode(newData);
+		} else {
+			ListNode newNode = new ListNode(newData, temp.next);
+			temp.next = newNode;
 		}
 
 		size++;
@@ -179,18 +185,28 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			throw new IndexOutOfBoundsException();
 		}
 
+		E removedData;
 		ListNode temp = front;
 
-		for (int i = 0; i < index - 1; i++) {
-			temp = temp.next;
+		if (size() == 1) {
+			removedData = front.data;
+			front = null;
+		} else if (index == 0) {
+			removedData = front.data;
+			front = front.next;
+		} else {
+			for (int i = 0; i < index - 1; i++) {
+				temp = temp.next;
+			}
+			removedData = temp.next.data;
+
+			if (temp.next != null) {
+				temp.next = temp.next.next;
+			}
 		}
 
-		ListNode removedNode = temp.next;
-
-		temp.next = temp.next.next;
-
 		this.size--;
-		return removedNode.data;
+		return removedData;
 	}
 
 	/**
@@ -217,6 +233,10 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 
 		if (index < 0 || index > size() - 1) {
 			throw new IndexOutOfBoundsException();
+		}
+
+		if (size() == 1) {
+			return front.data;
 		}
 
 		for (int i = 0; i < index; i++) {

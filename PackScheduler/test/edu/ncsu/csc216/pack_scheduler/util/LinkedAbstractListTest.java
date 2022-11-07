@@ -35,14 +35,35 @@ public class LinkedAbstractListTest {
 		list.add(0, "A");
 		assertThrows(IllegalArgumentException.class, () -> list.add(0, "A"));
 
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < 7; i++) {
 			list.add(0, String.valueOf(i));
 		}
+		
+		assertThrows(IllegalArgumentException.class, () -> list.add(0, "0"));
+		
+		list.add(0, "insert0");
+		assertEquals("insert0", list.get(0));
+		
+		list.add(2, "insert2");
+		
+		assertEquals("insert2", list.get(2));
 
 		assertThrows(IllegalArgumentException.class, () -> list.add(0, "too many"));
 
 		assertThrows(IndexOutOfBoundsException.class, () -> list.add(-1, "q"));
 		assertThrows(IndexOutOfBoundsException.class, () -> list.add(list.size() + 1, "eoi"));
+		
+		
+		LinkedAbstractList<String> fruitList = new LinkedAbstractList<String>(10);
+		
+		fruitList.add(0, "orange");
+		fruitList.add(1, "banana");
+		fruitList.add(2, "apple");
+		fruitList.add(3, "kiwi");
+		
+		assertThrows(IllegalArgumentException.class, () -> fruitList.add(4, "apple"));
+		assertThrows(IllegalArgumentException.class, () -> fruitList.add(2, "apple"));
+		assertThrows(IllegalArgumentException.class, () -> fruitList.add(0, "apple"));
 	}
 
 	/**
@@ -62,6 +83,19 @@ public class LinkedAbstractListTest {
 		assertThrows(IndexOutOfBoundsException.class, () -> list.remove(-1));
 		assertThrows(IndexOutOfBoundsException.class, () -> list.remove(list.size() + 1));
 		assertEquals(9, list.size());
+		
+		
+		LinkedAbstractList<String> fruitList = new LinkedAbstractList<String>(10);
+		
+		fruitList.add(0, "orange");
+		fruitList.add(1, "banana");
+		fruitList.add(2, "apple");
+		fruitList.add(3, "kiwi");
+		
+		fruitList.remove(1);
+		fruitList.remove(0);
+		
+		assertEquals("apple", fruitList.get(0));
 	}
 
 	/**

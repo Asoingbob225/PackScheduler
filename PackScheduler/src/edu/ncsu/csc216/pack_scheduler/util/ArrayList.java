@@ -6,7 +6,7 @@ import java.util.AbstractList;
  * Custom ArrayList that doesn't allow for null elements or duplicate elements
  *
  * @author rdbryan2
- * @param <E> the generic type of elements for an instance of ArrayList 
+ * @param <E> the generic type of elements for an instance of ArrayList
  */
 public class ArrayList<E> extends AbstractList<E> {
 
@@ -18,7 +18,7 @@ public class ArrayList<E> extends AbstractList<E> {
 
 	/** Number of elements currently in the ArrayList */
 	private int size;
-	
+
 	/**
 	 * Constructor for ArrayList
 	 */
@@ -27,12 +27,15 @@ public class ArrayList<E> extends AbstractList<E> {
 		list = (E[]) new Object[INIT_SIZE];
 		size = 0;
 	}
-	
+
 	/**
 	 * Adds element to array a specified index
 	 *
-	 * @param index desired index 
+	 * @param index  desired index
 	 * @param object generic type object to be added
+	 * @throws NullPointerException      if object is null
+	 * @throws IndexOutOfBoundsException if index is negative or > size of list
+	 * @throws IllegalArgumentException  if object is a duplicate
 	 */
 	@Override
 	public void add(int index, E object) {
@@ -56,7 +59,7 @@ public class ArrayList<E> extends AbstractList<E> {
 		list[index] = object;
 		size++;
 	}
-	
+
 	/**
 	 * Creates new array of double length and transfers elements over
 	 */
@@ -68,12 +71,13 @@ public class ArrayList<E> extends AbstractList<E> {
 		}
 		list = tempList;
 	}
-	
+
 	/**
 	 * Removes element at specified index
 	 * 
 	 * @param index index of element to remove
-     * @return element that was removed
+	 * @return element that was removed
+	 * @throws IndexOutOfBoundsException if index is negative or >= size of list
 	 */
 	@Override
 	public E remove(int index) {
@@ -88,12 +92,15 @@ public class ArrayList<E> extends AbstractList<E> {
 		size--;
 		return tempE;
 	}
-	
+
 	/**
 	 * Sets element at specified index
 	 * 
 	 * @param index index to set element to
-     * @return element that was replaced
+	 * @return element that was replaced
+	 * @throws NullPointerException      if object is null
+	 * @throws IndexOutOfBoundsException if index is negative or >= size of list
+	 * @throws IllegalArgumentException  if object is a duplicate
 	 */
 	@Override
 	public E set(int index, E object) {
@@ -111,16 +118,17 @@ public class ArrayList<E> extends AbstractList<E> {
 				throw new IllegalArgumentException();
 			}
 		}
-		
+
 		E tempE = list[index];
 		list[index] = object;
 		return tempE;
 	}
-	
+
 	/**
 	 * Returns element at specified index
 	 * 
 	 * @param index index of element to return
+	 * @throws IndexOutOfBoundsException if index is negative or >= size of list
 	 */
 	@Override
 	public E get(int index) {
@@ -129,11 +137,11 @@ public class ArrayList<E> extends AbstractList<E> {
 		}
 		return list[index];
 	}
-	
+
 	/**
 	 * Getter for size
 	 * 
-     * @return size of list
+	 * @return size of list
 	 */
 	@Override
 	public int size() {

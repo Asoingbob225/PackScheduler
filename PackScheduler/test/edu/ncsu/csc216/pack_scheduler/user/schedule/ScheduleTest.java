@@ -49,10 +49,10 @@ public class ScheduleTest {
 	/**
 	 * Expected output of getScheduledCourses() for respective elements in COURSES
 	 **/
-	private static final String[][] EXPECTED_ARRAY = { { NAME, "001", TITLE, "MW 1:30PM-2:45PM" },
-			{ "ZZZ999", "601", "Intro to existentiality", "F 9:00AM-10:00AM" },
-			{ "AAA000", "601", "Intro to introduction", "Arranged" },
-			{ "CSC282", "003", "Numerical Computation in FORTRAN", "TH 10:15AM-11:30AM" } };
+	private static final String[][] EXPECTED_ARRAY = { { NAME, "001", TITLE, "MW 1:30PM-2:45PM", "52" },
+			{ "ZZZ999", "601", "Intro to existentiality", "F 9:00AM-10:00AM", "60" },
+			{ "AAA000", "601", "Intro to introduction", "Arranged", "104" },
+			{ "CSC282", "003", "Numerical Computation in FORTRAN", "TH 10:15AM-11:30AM", "71" } };
 
 	/**
 	 * Should create an empty ArrayList of Courses. The title should be initialized
@@ -87,7 +87,8 @@ public class ScheduleTest {
 		assertTrue(s.addCourseToSchedule(COURSES[3]));
 		displayArray = s.getScheduledCourses();
 		assertEquals(4, displayArray.length);
-
+		assertEquals(12, s.getScheduleCredits());
+		
 		displayArray = s.getScheduledCourses();
 
 		for (int i = 0; i < 4; i++) {
@@ -203,4 +204,36 @@ public class ScheduleTest {
 		Exception e = assertThrows(IllegalArgumentException.class, () -> s.setTitle(null));
 		assertEquals("Title cannot be null.", e.getMessage());
 	}
+	
+	/**
+	 * Tests the canAdd method. This method should return true if the course can be added to the schedule
+	 * or false if the course is a duplicate or can't be added due to a conflict.
+	 */
+	@Test
+    public void testCanAdd() {
+
+        Schedule s = new Schedule();
+        assertEquals(0, s.getScheduleCredits());
+
+        assertTrue(s.addCourseToSchedule(COURSES[1]));
+        assertTrue(s.addCourseToSchedule(COURSES[2]));
+        assertTrue(s.addCourseToSchedule(COURSES[3]));
+        assertEquals(9, s.getScheduleCredits());
+
+        assertTrue(s.canAdd(COURSES[0]));
+        assertTrue(s.addCourseToSchedule(COURSES[0]));
+        assertEquals(12, s.getScheduleCredits());
+        
+        // Invalid cases
+        Course equalCourse = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME,
+                END_TIME);
+        Course duplicateNameCourse = new Course(NAME, "Not Software Development Fundamentals", "002", 4, "sesmith7",
+                99, "A");
+        Course conflictCourse = new Course("DTD327", "Not Software Development Fundamentals" + "1", "002", 4,
+                "sesmith7", 76, MEETING_DAYS, 1230, 1400);
+
+        assertFalse(s.canAdd(equalCourse));
+        assertFalse(s.canAdd(duplicateNameCourse));
+        assertFalse(s.canAdd(conflictCourse));
+    }
 }

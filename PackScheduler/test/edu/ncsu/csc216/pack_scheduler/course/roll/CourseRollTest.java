@@ -37,7 +37,7 @@ public class CourseRollTest {
 	 * with invalid enrollmentCap(s)
 	 */
 	@Test
-	void testCourseRoll() {
+	public void testCourseRoll() {
 		CourseRoll cRoll = new CourseRoll(100);
 		assertEquals(100, cRoll.getEnrollmentCap());
 		assertEquals(100, cRoll.getOpenSeats());
@@ -51,7 +51,7 @@ public class CourseRollTest {
 	 * Test enroll method, with duplicate and null students. Also fills class to capacity and tries to add more.
 	 */
 	@Test 
-	void testEnroll() {
+	public void testEnroll() {
 		CourseRoll cRoll = new CourseRoll(11);
 		Student a = new Student("Student 1", lastName, id, email, hashPW, 15);
 		Student b = new Student("Student 2", lastName, id, email, hashPW, 15);
@@ -111,7 +111,7 @@ public class CourseRollTest {
 	 * Tests drop method with null value and valid student
 	 */
 	@Test
-	void testDrop() {
+	public void testDrop() {
 		CourseRoll cRoll = new CourseRoll(10);
 		Student a = new Student("Student 1", lastName, id, email, hashPW, 15);
 		Student b = new Student("Student 2", lastName, id, email, hashPW, 15);

@@ -9,20 +9,29 @@ import java.util.Base64;
 import java.util.Properties;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
+import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 
 /**
- * Manages registration process and contains registrar inner class
+ * Manages registration process and contains registrar inner class. Maintains a
+ * static singleton instance of itself so that there is only one manager per
+ * application run. Also maintains an instance each of CourseCatalog and
+ * StudentDirectory along with a current User and a registrar User. Handles
+ * logins and enrolling/dropping students in/from courses. To allow controller
+ * to update the CourseCatalog and the StudentDirectory, there are getters for
+ * each.
  * 
  * @author abcoste2, cbthomp3, rdbryan2
  */
 public class RegistrationManager {
-	
-	/** Instance of Registration*/
+
+	/** Instance of Registration */
 	private static RegistrationManager instance;
-	/** Catalog of avaliable courses */
+	/** Catalog of available courses */
 	private CourseCatalog courseCatalog;
 	/** Directory of current students */
 	private StudentDirectory studentDirectory;
@@ -43,6 +52,74 @@ public class RegistrationManager {
 		createRegistrar();
 		studentDirectory = new StudentDirectory();
 		courseCatalog = new CourseCatalog();
+	}
+
+	/**
+	 * Returns true if the logged in student can enroll in the given course.
+	 * 
+	 * @param c Course to enroll in
+	 * @return true if enrolled
+	 */
+	public boolean enrollStudentInCourse(Course c) {
+		if (!(currentUser instanceof Student)) {
+			throw new IllegalArgumentException("Illegal Action");
+		}
+		try {
+			Student s = (Student) currentUser;
+			Schedule schedule = s.getSchedule();
+			CourseRoll roll = c.getCourseRoll();
+
+			if (s.canAdd(c) && roll.canEnroll(s)) {
+				schedule.addCourseToSchedule(c);
+				roll.enroll(s);
+				return true;
+			}
+
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
+		return false;
+	}
+
+	/**
+	 * Returns true if the logged in student can drop the given course.
+	 * 
+	 * @param c Course to drop
+	 * @return true if dropped
+	 */
+	public boolean dropStudentFromCourse(Course c) {
+		if (!(currentUser instanceof Student)) {
+			throw new IllegalArgumentException("Illegal Action");
+		}
+		try {
+			Student s = (Student) currentUser;
+			c.getCourseRoll().drop(s);
+			return s.getSchedule().removeCourseFromSchedule(c);
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
+	}
+
+	/**
+	 * Resets the logged in student's schedule by dropping them from every course
+	 * and then resetting the schedule.
+	 */
+	public void resetSchedule() {
+		if (!(currentUser instanceof Student)) {
+			throw new IllegalArgumentException("Illegal Action");
+		}
+		try {
+			Student s = (Student) currentUser;
+			Schedule schedule = s.getSchedule();
+			String[][] scheduleArray = schedule.getScheduledCourses();
+			for (int i = 0; i < scheduleArray.length; i++) {
+				Course c = courseCatalog.getCourseFromCatalog(scheduleArray[i][0], scheduleArray[i][1]);
+				c.getCourseRoll().drop(s);
+			}
+			schedule.resetSchedule();
+		} catch (IllegalArgumentException e) {
+			// do nothing
+		}
 	}
 
 	/**
@@ -134,28 +211,27 @@ public class RegistrationManager {
 		}
 
 		Student s = studentDirectory.getStudentById(id);
-		
+
 		String localHashPW = hashPW(password);
 		if (s != null && s.getPassword().equals(localHashPW)) {
-				currentUser = s;
-				return true;
+			currentUser = s;
+			return true;
 		}
-		
+
 		boolean registrarLogin = false;
 		if (registrar.getId().equals(id)) {
 			registrarLogin = true;
-			if(registrar.getPassword().equals(localHashPW)) {
+			if (registrar.getPassword().equals(localHashPW)) {
 				currentUser = registrar;
 				return true;
 			}
 		}
-		if(s != null || registrarLogin) {
+		if (s != null || registrarLogin) {
 			return false;
 		} else {
 			throw new IllegalArgumentException("User doesn't exist.");
 		}
-		
-		
+
 	}
 
 	/**
@@ -191,15 +267,15 @@ public class RegistrationManager {
 	 *
 	 */
 	private static class Registrar extends User {
-	
+
 		/**
 		 * Create a registrar user.
 		 * 
 		 * @param firstName first name of user
-		 * @param lastName last name of user
-		 * @param id id of user
-		 * @param email email of user
-		 * @param hashPW hashed password of user
+		 * @param lastName  last name of user
+		 * @param id        id of user
+		 * @param email     email of user
+		 * @param hashPW    hashed password of user
 		 */
 		public Registrar(String firstName, String lastName, String id, String email, String hashPW) {
 			super(firstName, lastName, id, email, hashPW);

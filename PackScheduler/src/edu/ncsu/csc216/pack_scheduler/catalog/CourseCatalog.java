@@ -56,14 +56,15 @@ public class CourseCatalog {
 	 * SortedList.add(course) by returning false. Course constructor may throw an
 	 * IllegalArgumentException if parameters are invalid.
 	 * 
-	 * @param name         course name
-	 * @param title        course title
-	 * @param section      course section
-	 * @param credits      number of credits
-	 * @param instructorId course's instructor ID
-	 * @param meetingDays  days course meets
-	 * @param startTime    time course starts
-	 * @param endTime      time course ends
+	 * @param name          course name
+	 * @param title         course title
+	 * @param section       course section
+	 * @param credits       number of credits
+	 * @param instructorId  course's instructor ID
+	 * @param enrollmentCap Maximum number of allowed students
+	 * @param meetingDays   days course meets
+	 * @param startTime     time course starts
+	 * @param endTime       time course ends
 	 * @return true if the Course is added and false if the Course already exists in
 	 *         the catalog
 	 * @throws IllegalArgumentException if there is an error constructing a Course

@@ -55,14 +55,15 @@ public class Course extends Activity implements Comparable<Course> {
 	 * are not arranged, so unlike the constructor for arranged courses, there will
 	 * also be start times and end times.
 	 * 
-	 * @param name         name of Course
-	 * @param title        title of Course
-	 * @param section      section of Course
-	 * @param credits      credit hours for Course
-	 * @param instructorId instructor's unity id
-	 * @param meetingDays  string of characters for weekdays when course meets
-	 * @param startTime    end time of course meeting (in military time)
-	 * @param endTime      end time of course meeting (in military time)
+	 * @param name          name of Course
+	 * @param title         title of Course
+	 * @param section       section of Course
+	 * @param credits       credit hours for Course
+	 * @param instructorId  instructor's unity id
+	 * @param enrollmentCap Maximum number of allowed students
+	 * @param meetingDays   string of characters for weekdays when course meets
+	 * @param startTime     end time of course meeting (in military time)
+	 * @param endTime       end time of course meeting (in military time)
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays,
 			int startTime, int endTime) {
@@ -74,6 +75,10 @@ public class Course extends Activity implements Comparable<Course> {
 		setEnrollmentCap(enrollmentCap);
 	}
 
+	/**
+	 * Returns the roll for this course
+	 * @return the CourseRoll for this instance
+	 */
 	public CourseRoll getCourseRoll() {
 	    return roll;
 	}
@@ -87,12 +92,13 @@ public class Course extends Activity implements Comparable<Course> {
 	 * Creates a Course with the given name, title, section, credits, instructorId,
 	 * and meetingDays for courses that are arranged.
 	 * 
-	 * @param name         name of Course
-	 * @param title        title of Course
-	 * @param section      section of Course
-	 * @param credits      credit hours for Course
-	 * @param instructorId instructor's unity id
-	 * @param meetingDays  meeting days for Course as series of chars
+	 * @param name          name of Course
+	 * @param title         title of Course
+	 * @param section       section of Course
+	 * @param credits       credit hours for Course
+	 * @param instructorId  instructor's unity id
+	 * @param enrollmentCap Maximum number of allowed students
+	 * @param meetingDays   meeting days for Course as series of chars
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) {
 		this(name, title, section, credits, instructorId, enrollmentCap, meetingDays, 0, 0);

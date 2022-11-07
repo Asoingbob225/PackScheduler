@@ -30,19 +30,19 @@ public class CourseCatalogTest {
 	 * test-files/course_records.txt
 	 */
 	private static final String[][] EXPECTED_RECORDS = new String[][] {
-			{ "CSC116", "001", "Intro to Programming - Java", "MW 9:10AM-11:00AM" },
-			{ "CSC116", "002", "Intro to Programming - Java", "MW 11:20AM-1:10PM" },
-			{ "CSC116", "003", "Intro to Programming - Java", "TH 11:20AM-1:10PM" },
-			{ "CSC216", "001", "Software Development Fundamentals", "TH 1:30PM-2:45PM" },
-			{ "CSC216", "002", "Software Development Fundamentals", "MW 1:30PM-2:45PM" },
-			{ "CSC216", "601", "Software Development Fundamentals", "Arranged" },
-			{ "CSC217", "202", "Software Development Fundamentals Lab", "M 10:40AM-12:30PM" },
-			{ "CSC217", "211", "Software Development Fundamentals Lab", "T 8:30AM-10:20AM" },
-			{ "CSC217", "223", "Software Development Fundamentals Lab", "W 3:00PM-4:50PM" },
-			{ "CSC217", "601", "Software Development Fundamentals Lab", "Arranged" },
-			{ "CSC226", "001", "Discrete Mathematics for Computer Scientists", "MWF 9:35AM-10:25AM" },
-			{ "CSC230", "001", "C and Software Tools", "MW 11:45AM-1:00PM" },
-			{ "CSC316", "001", "Data Structures and Algorithms", "MW 8:30AM-9:45AM" } };
+			{ "CSC116", "001", "Intro to Programming - Java", "MW 9:10AM-11:00AM", "10" },
+			{ "CSC116", "002", "Intro to Programming - Java", "MW 11:20AM-1:10PM", "10" },
+			{ "CSC116", "003", "Intro to Programming - Java", "TH 11:20AM-1:10PM", "10" },
+			{ "CSC216", "001", "Software Development Fundamentals", "TH 1:30PM-2:45PM", "10" },
+			{ "CSC216", "002", "Software Development Fundamentals", "MW 1:30PM-2:45PM", "10" },
+			{ "CSC216", "601", "Software Development Fundamentals", "Arranged", "10" },
+			{ "CSC217", "202", "Software Development Fundamentals Lab", "M 10:40AM-12:30PM", "10" },
+			{ "CSC217", "211", "Software Development Fundamentals Lab", "T 8:30AM-10:20AM", "10" },
+			{ "CSC217", "223", "Software Development Fundamentals Lab", "W 3:00PM-4:50PM", "10" },
+			{ "CSC217", "601", "Software Development Fundamentals Lab", "Arranged", "10" },
+			{ "CSC226", "001", "Discrete Mathematics for Computer Scientists", "MWF 9:35AM-10:25AM", "10" },
+			{ "CSC230", "001", "C and Software Tools", "MW 11:45AM-1:00PM", "10" },
+			{ "CSC316", "001", "Data Structures and Algorithms", "MW 8:30AM-9:45AM", "10" } };
 
 	/**
 	 * Tests CourseCatalog constructor to make sure it is an empty list so it will

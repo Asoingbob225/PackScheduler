@@ -62,7 +62,7 @@ public class CourseRecordIO {
 				}
 				// If the course is NOT a duplicate
 				if (!duplicate) {
-					courses.add(course); // Add to the ArrayList!
+					courses.add(course); // Add to the List!
 				} // Otherwise ignore
 			} catch (IllegalArgumentException e) {
 				// The line is invalid b/c we couldn't create a course, skip it!
@@ -70,7 +70,7 @@ public class CourseRecordIO {
 		}
 		// Close the Scanner b/c we're responsible with our file handles
 		fileReader.close();
-		// Return the ArrayList with all the courses we read!
+		// Return the Lis with all the courses we read!
 		return courses;
 	}
 

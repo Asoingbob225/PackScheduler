@@ -5,9 +5,12 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.util.ArrayList;
 
 /**
- * List of courses that a user is enrolled in. Implements the created custom ArrayList
+ * List of courses that a user is enrolled in. Maintains a title for the
+ * schedule and an instance of the custom ArrayList with type Course. Includes
+ * functionality for adding/removing courses, updating the title, clearing the
+ * schedule, and checking if a course can be added.
+ * 
  * @author chase
- *
  */
 public class Schedule {
 
@@ -66,7 +69,7 @@ public class Schedule {
             String[][] emptySchedule = new String[0][0];
             return emptySchedule;
         }
-        String[][] returnString = new String[schedule.size()][4];
+        String[][] returnString = new String[schedule.size()][5];
         for (int i = 0; i < schedule.size(); i++) {
             Course c = schedule.get(i);
             returnString[i] = c.getShortDisplayArray();
@@ -114,6 +117,42 @@ public class Schedule {
     public void resetSchedule() {
         title = "My Schedule";
         schedule = new ArrayList<Course>();
+    }
+    
+    /**
+     * Calculates the total number of credits in a schedule and returns it
+     * @return the total number of credits in a schedule
+     */
+    public int getScheduleCredits() {
+        if (schedule.size() == 0) {
+            return 0;
+        }
+        int totalCredits = 0;
+        for (int i = 0; i < schedule.size(); i++) {
+            totalCredits += schedule.get(i).getCredits();
+        }
+        return totalCredits;
+    }
+    
+    /**
+     * Method used by RegistrationManager to check if a course can be added to the schedule
+     * @param course the course to check
+     * @return true if it can be added, false otherwise
+     */
+    public boolean canAdd(Course course) {
+        for (int i = 0; i < schedule.size(); i++) {
+            if (schedule.get(i).isDuplicate(course)) {
+                return false;
+            }
+        }
+        try {
+            for (int i = 0; i < schedule.size(); i++) {
+                schedule.get(i).checkConflict(course);
+            }
+        } catch (ConflictException e) {
+            return false;
+        }
+        return true;
     }
 
 }

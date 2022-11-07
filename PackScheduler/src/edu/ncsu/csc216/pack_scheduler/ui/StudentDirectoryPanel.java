@@ -33,7 +33,7 @@ import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
  * @author Sarah Heckman
  */
 public class StudentDirectoryPanel extends JPanel implements ActionListener {
-	
+
 	/** ID used for object serialization */
 	private static final long serialVersionUID = 1L;
 
@@ -83,64 +83,64 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 	private JButton btnRemoveStudent;
 	/** Reference to StudentDirectory */
 	private StudentDirectory studentDirectory;
-	
+
 	/**
-	 * Constructs the StudentDirectoryGUI and sets up the GUI 
-	 * components.
+	 * Constructs the StudentDirectoryGUI and sets up the GUI components.
 	 */
 	public StudentDirectoryPanel() {
 		super(new GridBagLayout());
-		
+
 		studentDirectory = RegistrationManager.getInstance().getStudentDirectory();
-		
-		//Set up Directory buttons
+
+		// Set up Directory buttons
 		btnNewStudentList = new JButton("New Student Directory");
 		btnNewStudentList.addActionListener(this);
 		btnLoadStudentList = new JButton("Load Student Directory");
 		btnLoadStudentList.addActionListener(this);
 		btnSaveStudentList = new JButton("Save Student Directory");
 		btnSaveStudentList.addActionListener(this);
-		
+
 		JPanel pnlDirectoryButton = new JPanel();
 		pnlDirectoryButton.setLayout(new GridLayout(1, 3));
 		pnlDirectoryButton.add(btnNewStudentList);
 		pnlDirectoryButton.add(btnLoadStudentList);
 		pnlDirectoryButton.add(btnSaveStudentList);
-		
+
 		Border lowerEtched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder boarder = BorderFactory.createTitledBorder(lowerEtched, "Directory Buttons");
 		pnlDirectoryButton.setBorder(boarder);
 		pnlDirectoryButton.setToolTipText("Directory Buttons");
-		
-		//Set up Directory table
+
+		// Set up Directory table
 		studentDirectoryTableModel = new StudentDirectoryTableModel();
 		tableStudentDirectory = new JTable(studentDirectoryTableModel);
 		tableStudentDirectory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableStudentDirectory.setPreferredScrollableViewportSize(new Dimension(500, 500));
 		tableStudentDirectory.setFillsViewportHeight(true);
-		
-		scrollStudentDirectory = new JScrollPane(tableStudentDirectory, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
+
+		scrollStudentDirectory = new JScrollPane(tableStudentDirectory, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
 		boarder = BorderFactory.createTitledBorder(lowerEtched, "Student Directory");
 		scrollStudentDirectory.setBorder(boarder);
 		scrollStudentDirectory.setToolTipText("Student Directory");
-		
-		//Set up Student buttons
+
+		// Set up Student buttons
 		btnAddStudent = new JButton("Add Student");
 		btnAddStudent.addActionListener(this);
 		btnRemoveStudent = new JButton("Remove Student");
 		btnRemoveStudent.addActionListener(this);
-		
+
 		JPanel pnlStudentButtons = new JPanel();
 		pnlStudentButtons.setLayout(new GridLayout(1, 2));
 		pnlStudentButtons.add(btnAddStudent);
 		pnlStudentButtons.add(btnRemoveStudent);
-		
+
 		boarder = BorderFactory.createTitledBorder(lowerEtched, "Student Controls");
 		pnlStudentButtons.setBorder(boarder);
 		pnlStudentButtons.setToolTipText("StudentControls");
-		
-		//Set up Student form
+
+		// Set up Student form
 		lblFirstName = new JLabel("First Name");
 		lblLastName = new JLabel("Last Name");
 		lblId = new JLabel("ID");
@@ -155,7 +155,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 		txtPassword = new JPasswordField(20);
 		txtRepeatPassword = new JPasswordField(20);
 		txtMaxCredits = new JTextField(20);
-		
+
 		JPanel pnlStudentForm = new JPanel();
 		pnlStudentForm.setLayout(new GridLayout(7, 2));
 		pnlStudentForm.add(lblFirstName);
@@ -172,11 +172,11 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 		pnlStudentForm.add(txtRepeatPassword);
 		pnlStudentForm.add(lblMaxCredits);
 		pnlStudentForm.add(txtMaxCredits);
-		
+
 		boarder = BorderFactory.createTitledBorder(lowerEtched, "Student Information");
 		pnlStudentForm.setBorder(boarder);
 		pnlStudentForm.setToolTipText("Student Information");
-		
+
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
@@ -185,7 +185,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.BOTH;
 		this.add(pnlDirectoryButton, c);
-		
+
 		c.gridx = 0;
 		c.gridy = 1;
 		c.weightx = 1;
@@ -193,7 +193,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.BOTH;
 		this.add(scrollStudentDirectory, c);
-		
+
 		c.gridx = 0;
 		c.gridy = 2;
 		c.weightx = 1;
@@ -201,7 +201,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.BOTH;
 		this.add(pnlStudentButtons, c);
-		
+
 		c.gridx = 0;
 		c.gridy = 3;
 		c.weightx = 1;
@@ -209,7 +209,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.BOTH;
 		this.add(pnlStudentForm, c);
-		
+
 	}
 
 	/**
@@ -256,17 +256,17 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 			} catch (NumberFormatException nfe) {
 				// Do nothing - use default max credits
 			}
-			
+
 			String pwString = "";
 			for (int i = 0; i < password.length; i++) {
 				pwString += password[i];
 			}
-			
+
 			String repeatPWString = "";
 			for (int i = 0; i < repeatPassword.length; i++) {
 				repeatPWString += repeatPassword[i];
 			}
-			
+
 			try {
 				if (studentDirectory.addStudent(firstName, lastName, id, email, pwString, repeatPWString, maxCredits)) {
 					txtFirstName.setText("");
@@ -285,7 +285,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 			studentDirectoryTableModel.updateData();
 		} else if (e.getSource() == btnRemoveStudent) {
 			int row = tableStudentDirectory.getSelectedRow();
-			if (row == -1  || row == tableStudentDirectory.getRowCount()) {
+			if (row == -1 || row == tableStudentDirectory.getRowCount()) {
 				JOptionPane.showMessageDialog(this, "No student selected.");
 			} else {
 				try {
@@ -296,19 +296,20 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 			}
 			studentDirectoryTableModel.updateData();
 		}
-		
+
 		this.validate();
 		this.repaint();
 	}
-	
+
 	/**
 	 * Returns a file name generated through interactions with a JFileChooser
 	 * object.
+	 * 
 	 * @param chooserType true if open, false if save
 	 * @return the file name selected through JFileChooser
 	 */
 	private String getFileName(boolean chooserType) {
-		JFileChooser fc = new JFileChooser("./");  //Open JFileChoose to current working directory
+		JFileChooser fc = new JFileChooser("./"); // Open JFileChoose to current working directory
 		fc.setApproveButtonText("Select");
 		int returnVal = Integer.MIN_VALUE;
 		if (chooserType) {
@@ -319,30 +320,31 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 			returnVal = fc.showSaveDialog(this);
 		}
 		if (returnVal != JFileChooser.APPROVE_OPTION) {
-			//Error or user canceled, either way no file name.
+			// Error or user canceled, either way no file name.
 			throw new IllegalStateException("Invalid selection.");
 		}
 		File catalogFile = fc.getSelectedFile();
 		return catalogFile.getAbsolutePath();
 	}
-	
+
 	/**
-	 * StudentDirectoryTableModel is the object underlying the JTable object that displays
-	 * the list of Students to the user.
+	 * StudentDirectoryTableModel is the object underlying the JTable object that
+	 * displays the list of Students to the user.
+	 * 
 	 * @author Sarah Heckman
 	 */
 	private class StudentDirectoryTableModel extends AbstractTableModel {
-		
+
 		/** ID number used for object serialization. */
 		private static final long serialVersionUID = 1L;
 		/** Column names for the table */
-		private String [] columnNames = {"First Name", "Last Name", "Student ID"};
+		private String[] columnNames = { "First Name", "Last Name", "Student ID" };
 		/** Data stored in the table */
-		private Object [][] data;
-		
+		private Object[][] data;
+
 		/**
-		 * Constructs the StudentDirectoryTableModel by requesting the latest information
-		 * from the RegistrationManager.
+		 * Constructs the StudentDirectoryTableModel by requesting the latest
+		 * information from the RegistrationManager.
 		 */
 		public StudentDirectoryTableModel() {
 			updateData();
@@ -350,6 +352,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 
 		/**
 		 * Returns the number of columns in the table.
+		 * 
 		 * @return the number of columns in the table.
 		 */
 		public int getColumnCount() {
@@ -358,16 +361,18 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 
 		/**
 		 * Returns the number of rows in the table.
+		 * 
 		 * @return the number of rows in the table.
 		 */
 		public int getRowCount() {
-			if (data == null) 
+			if (data == null)
 				return 0;
 			return data.length;
 		}
-		
+
 		/**
 		 * Returns the column name at the given index.
+		 * 
 		 * @param col column index
 		 * @return the column name at the given column.
 		 */
@@ -377,6 +382,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 
 		/**
 		 * Returns the data at the given {row, col} index.
+		 * 
 		 * @param row row index
 		 * @param col column index
 		 * @return the data at the given location.
@@ -386,18 +392,19 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 				return null;
 			return data[row][col];
 		}
-		
+
 		/**
 		 * Sets the given value to the given {row, col} location.
+		 * 
 		 * @param value Object to modify in the data.
-		 * @param row location to modify the data.
-		 * @param col location to modify the data.
+		 * @param row   location to modify the data.
+		 * @param col   location to modify the data.
 		 */
 		public void setValueAt(Object value, int row, int col) {
 			data[row][col] = value;
 			fireTableCellUpdated(row, col);
 		}
-		
+
 		/**
 		 * Updates the given model with Student information from the StudentDirectory.
 		 */
