@@ -20,9 +20,9 @@ class ArrayQueueTest {
 	void testPush() {
 		ArrayQueue<Integer> s = new ArrayQueue<Integer>(10);
 		assertEquals(0, s.size());
-		s.push(9);
+		s.enqueue(9);
 		assertEquals(1, s.size());
-		s.push(6);
+		s.enqueue(6);
 		assertEquals(2, s.size());
 	}
 
@@ -31,15 +31,15 @@ class ArrayQueueTest {
 	 */
 	@Test
 	void testPop() {
-		ArrayStack<Integer> s = new ArrayStack<Integer>(10);
+		ArrayQueue<Integer> s = new ArrayQueue<Integer>(10);
 		assertEquals(0, s.size());
-		s.push(9);
+		s.enqueue(9);
 		assertEquals(1, s.size());
-		s.push(6);
+		s.enqueue(6);
 		assertEquals(2, s.size());
-		s.pop();
+		s.dequeue();
 		assertEquals(1, s.size());
-		s.pop();
+		s.dequeue();
 		assertEquals(0, s.size());
 
 	}
@@ -49,9 +49,9 @@ class ArrayQueueTest {
 	 */
 	@Test
 	void testIsEmpty() {
-		ArrayStack<Integer> s = new ArrayStack<Integer>(10);
-		s.push(9);
-		s.pop();
+		ArrayQueue<Integer> s = new ArrayQueue<Integer>(10);
+		s.enqueue(9);
+		s.dequeue();
 		assertTrue(s.isEmpty());
 		
 	}
@@ -61,10 +61,10 @@ class ArrayQueueTest {
 	 */
 	@Test
 	void testSize() {
-		ArrayStack<Integer> s = new ArrayStack<Integer>(10);
-		s.push(9);
-		s.push(2);
-		s.push(4);
+		ArrayQueue<Integer> s = new ArrayQueue<Integer>(10);
+		s.enqueue(9);
+		s.enqueue(2);
+		s.enqueue(4);
 		assertEquals(3, s.size());
 	}
 
@@ -73,10 +73,10 @@ class ArrayQueueTest {
 	 */
 	@Test
 	void testSetCapacity() {
-		ArrayStack<Integer> s = new ArrayStack<Integer>(10);
-		s.push(9);
-		s.push(2);
-		s.push(4);
+		ArrayQueue<Integer> s = new ArrayQueue<Integer>(10);
+		s.enqueue(9);
+		s.enqueue(2);
+		s.enqueue(4);
 		assertThrows(IllegalArgumentException.class, () -> s.setCapacity(1));
 	}
 

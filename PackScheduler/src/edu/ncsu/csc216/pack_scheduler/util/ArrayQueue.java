@@ -1,35 +1,63 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
-public class ArrayQueue<E> implements Queue {
+import java.util.EmptyStackException;
 
+public class ArrayQueue<E> implements Queue<E> {
+
+	private ArrayList<E> queue;
+	
+	private int capacity;
+	
+	public ArrayQueue(int capacity) {
+		queue = new ArrayList<E>();
+		setCapacity(capacity);
+	}
+	
 	@Override
-	public void enqueue(Object element) {
-		// TODO Auto-generated method stub
-		
+	public void enqueue(E element) {
+		if (size() < capacity) {
+			
+			if(size() == 0)
+			{
+				queue.add(element);
+			}
+			else
+			{
+				queue.add(size() - 1, element);
+				capacity++;
+			}
+			
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	@Override
-	public Object dequeue() {
-		// TODO Auto-generated method stub
-		return null;
+	public E dequeue() {
+		if (isEmpty()) {
+			throw new EmptyStackException();
+		}
+		capacity--;
+		return queue.remove(0);
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return queue.isEmpty();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return queue.size();
 	}
 
 	@Override
 	public void setCapacity(int capacity) {
-		// TODO Auto-generated method stub
-		
+		if (capacity < size() || capacity < 0) {
+			throw new IllegalArgumentException();
+		}
+		this.capacity = capacity;
 	}
 
 }
