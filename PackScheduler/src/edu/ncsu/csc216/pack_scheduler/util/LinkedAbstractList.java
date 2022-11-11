@@ -23,6 +23,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	/** The first node in the linked list */
 	private ListNode front;
 
+	/** The last node in the linked list */
+	private ListNode back;
+
 	/** The maximum amount of nodes that this list can hold */
 	private int capacity;
 
@@ -71,6 +74,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	public LinkedAbstractList(int capacity) {
 		size = 0;
 		front = null;
+		back = null;
 		this.capacity = capacity;
 	}
 
@@ -162,7 +166,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		}
 
 		if (temp.next == null) {
-			temp.next = new ListNode(newData);
+			back = new ListNode(newData);
+			temp.next = back;
 		} else {
 			ListNode newNode = new ListNode(newData, temp.next);
 			temp.next = newNode;
@@ -194,6 +199,13 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		} else if (index == 0) {
 			removedData = front.data;
 			front = front.next;
+		} else if (index == size() - 1) {
+			for (int i = 0; i < index - 1; i++) {
+				temp = temp.next;
+			}
+			back = temp;
+			removedData = back.next.data;
+			back.next = null;
 		} else {
 			for (int i = 0; i < index - 1; i++) {
 				temp = temp.next;
@@ -205,7 +217,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			}
 		}
 
-		this.size--;
+		size--;
 		return removedData;
 	}
 
@@ -261,9 +273,10 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 
 		capacity = newCapacity;
 	}
-	
+
 	/**
-	 * @param capacity
+	 * Sets the list's capacity
+	 * @param capacity the capacity to set 
 	 */
 	public void setcapacity(int capacity) {
 		if (capacity < 0 || capacity < size()) {
