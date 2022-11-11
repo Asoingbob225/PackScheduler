@@ -1,7 +1,7 @@
 # csc217-LR3-203-03
 
-Lab 8
-Finsihed Implementing/Testing Stack s (Peer Programmed) | Owner: Jimin Yu, Adharsh Rajagopal, Davis Bryant Due: 11/7 , Status: Complete
+**Lab 9 **
+Finished Implementing/Testing Stack s (Peer Programmed) | Owner: Jimin Yu, Adharsh Rajagopal, Davis Bryant Due: 11/7 , Status: Complete
 
 Finsihed Implementing/Testing Queue s (Peer Programmed) | Owner: Jimin Yu, Adharsh Rajagopal, Davis Bryant Due: 11/7 , Status: Complete
 
