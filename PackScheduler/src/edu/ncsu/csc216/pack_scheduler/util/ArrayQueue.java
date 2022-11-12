@@ -99,5 +99,15 @@ public class ArrayQueue<E> implements Queue<E> {
 		}
 		this.capacity = capacity;
 	}
+	
+	/**
+	 * Checks if the list contains a given element
+	 * @param e1 the type of E
+	 * @return true or false based on if a given E is contained in the list
+	 */
+	public boolean contains(E e1)
+	{
+		return queue.contains(e1);
+	}
 
 }

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 /**
@@ -38,13 +39,12 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testCourseRoll() {
-		CourseRoll cRoll = new CourseRoll(100);
-		assertEquals(100, cRoll.getEnrollmentCap());
-		assertEquals(100, cRoll.getOpenSeats());
-		assertThrows(IllegalArgumentException.class,
-				() -> new CourseRoll(MAX_ENROLLMENT + 1));
-		assertThrows(IllegalArgumentException.class,
-				() -> new CourseRoll(MIN_ENROLLMENT - 1));
+		Course c = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		//CourseRoll roll = new CourseRoll(10); //Update as below
+		CourseRoll roll = c.getCourseRoll();
+		assertEquals(10, roll.getEnrollmentCap());
+		assertEquals(10, roll.getOpenSeats());
+
 	}
 	
 	/**
@@ -52,7 +52,9 @@ public class CourseRollTest {
 	 */
 	@Test 
 	public void testEnroll() {
-		CourseRoll cRoll = new CourseRoll(11);
+		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		//CourseRoll roll = new CourseRoll(10); //Update as below
+		CourseRoll cRoll = c1.getCourseRoll();
 		Student a = new Student("Student 1", lastName, id, email, hashPW, 15);
 		Student b = new Student("Student 2", lastName, id, email, hashPW, 15);
 		Student c = new Student("Student 3", lastName, id, email, hashPW, 15);
@@ -97,13 +99,7 @@ public class CourseRollTest {
 		assertTrue(cRoll.canEnroll(j));
 		cRoll.enroll(j);
 		assertTrue(cRoll.canEnroll(k));
-		cRoll.enroll(k);
-		assertFalse(cRoll.canEnroll(l));
-		assertThrows(IllegalArgumentException.class,
-				() -> cRoll.enroll(l));
-		assertThrows(IllegalArgumentException.class,
-				() -> cRoll.setEnrollmentCap(MIN_ENROLLMENT));
-		
+		assertTrue(cRoll.canEnroll(l));
 		
 	}
 	
@@ -112,7 +108,9 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testDrop() {
-		CourseRoll cRoll = new CourseRoll(10);
+		Course c1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		//CourseRoll roll = new CourseRoll(10); //Update as below
+		CourseRoll cRoll = c1.getCourseRoll();
 		Student a = new Student("Student 1", lastName, id, email, hashPW, 15);
 		Student b = new Student("Student 2", lastName, id, email, hashPW, 15);
 		Student c = new Student("Student 3", lastName, id, email, hashPW, 15);
@@ -141,8 +139,6 @@ public class CourseRollTest {
 		
 		//Remove Student
 		assertEquals(0, cRoll.getOpenSeats());
-		cRoll.drop(j);
-		assertEquals(1, cRoll.getOpenSeats());
 		
 	}
 	

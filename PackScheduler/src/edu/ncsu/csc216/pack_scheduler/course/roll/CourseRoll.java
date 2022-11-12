@@ -1,9 +1,8 @@
 package edu.ncsu.csc216.pack_scheduler.course.roll;
 
-
-import java.util.List;
-
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
+import edu.ncsu.csc216.pack_scheduler.util.ArrayQueue;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
 
 /**
@@ -19,6 +18,9 @@ public class CourseRoll {
 
 	/** Maximum number of allowed students */
 	private int enrollmentCap;
+	
+	/** List of students */
+	private ArrayQueue<Student> waitlist;
 
 	/** Minimum allowed enrollment */
 	private static final int MIN_ENROLLMENT = 10;
@@ -28,12 +30,17 @@ public class CourseRoll {
 	
 	/**
 	 * Constructor for CourseRoll
-	 * 
+	 * @param c type of Course
 	 * @param enrollmentCap maximum number of enrolled students
 	 */
-	public CourseRoll(int enrollmentCap) {
+	public CourseRoll(Course c, int enrollmentCap) {
+		if(c == null)
+		{
+			throw new IllegalArgumentException();
+		}
 		setEnrollmentCap(enrollmentCap);
 		roll = new LinkedAbstractList<>(enrollmentCap);
+		waitlist = new ArrayQueue<Student>(10);
 	}
 
 	/**
@@ -83,11 +90,27 @@ public class CourseRoll {
 		if(s == null || !canEnroll(s)) {
 			throw new IllegalArgumentException();
 		}
-		try {
-			roll.add(s);
-		} catch (Exception e) {
-			throw new IllegalArgumentException();
+		if(roll.size() == enrollmentCap)
+		{
+			if(waitlist.size() < 10)
+			{
+				waitlist.enqueue(s);
+			}
+			else
+			{
+				throw new IllegalArgumentException();
+			}
 		}
+		else
+		{
+			try {
+				roll.add(s);
+			} catch (Exception e) {
+				throw new IllegalArgumentException();
+			}
+		}
+		
+		
 	}
 	
 	/**
@@ -102,6 +125,10 @@ public class CourseRoll {
 		}
 		try {
 			roll.remove(s);
+			if(waitlist.size() > 0)
+			{
+				roll.add(waitlist.dequeue());
+			}
 		} catch (Exception e) {
 			throw new IllegalArgumentException();
 		}
@@ -114,7 +141,7 @@ public class CourseRoll {
 	 * @return true if the student can enroll, false otherwise
 	 */
 	public boolean canEnroll(Student s) {
-		if(roll.size() >= enrollmentCap) {
+		if(roll.size() > enrollmentCap) {
 			return false;
 		}
 		for(int i = 0; i < roll.size(); i++) {
@@ -122,7 +149,23 @@ public class CourseRoll {
 				return false;
 			}
 		}
-		return true;
+		
+		if(waitlist.size() == 10)
+		{
+			return false;
+		}
+		
+		return !waitlist.contains(s);
+		
+	}
+	
+	/**
+	 * returns the number of Students on the wait list
+	 * @return the number of students on the wait list
+	 */
+	public int getNumberOnWaitlist()
+	{
+		return waitlist.size();
 	}
 	
 }

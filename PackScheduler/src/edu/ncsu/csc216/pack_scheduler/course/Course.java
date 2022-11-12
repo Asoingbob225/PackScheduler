@@ -84,7 +84,7 @@ public class Course extends Activity implements Comparable<Course> {
 	}
 	
 	private void setEnrollmentCap(int enrollmentCap) {
-        roll = new CourseRoll(enrollmentCap);
+        roll = new CourseRoll(this, enrollmentCap);
         
     }
 
