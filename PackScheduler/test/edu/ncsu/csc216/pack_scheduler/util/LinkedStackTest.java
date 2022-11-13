@@ -5,6 +5,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.EmptyStackException;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -32,6 +34,7 @@ class LinkedStackTest {
 	@Test
 	void testPop() {
 		LinkedStack<Integer> s = new LinkedStack<Integer>(10);
+		assertThrows(EmptyStackException.class, () -> s.pop());
 		assertEquals(0, s.size());
 		s.push(9);
 		assertEquals(1, s.size());
@@ -74,6 +77,7 @@ class LinkedStackTest {
 	@Test
 	void testSetCapacity() {
 		LinkedStack<Integer> s = new LinkedStack<Integer>(10);
+		s.setCapacity(3);
 		s.push(9);
 		s.push(2);
 		s.push(4);
