@@ -63,7 +63,7 @@ public class ArrayQueue<E> implements Queue<E> {
 		if (isEmpty()) {
 			throw new NoSuchElementException();
 		}
-		capacity--;
+		size--;
 		return queue.remove(0);
 	}
 
