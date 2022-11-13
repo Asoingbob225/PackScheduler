@@ -141,21 +141,15 @@ public class CourseRoll {
 	 * @return true if the student can enroll, false otherwise
 	 */
 	public boolean canEnroll(Student s) {
-		if(roll.size() > enrollmentCap) {
-			return false;
-		}
 		for(int i = 0; i < roll.size(); i++) {
 			if(s.equals(roll.get(i))) {
 				return false;
 			}
 		}
-		
-		if(waitlist.size() == 10)
-		{
+		if(waitlist.size() == 10) {
 			return false;
 		}
-		
-		return !waitlist.contains(s);
+		return true;
 		
 	}
 	

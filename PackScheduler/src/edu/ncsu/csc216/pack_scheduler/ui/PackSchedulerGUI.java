@@ -264,6 +264,8 @@ public class PackSchedulerGUI {
 			rPanel.add(pnlCatalog, COURSE_CATALOG_PANEL);
 			rCardLayout.show(rPanel, STUDENT_DIRECTORY_PANEL);
 			
+//			scrollRPanel = new JScrollPane(rPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			
 			GridBagConstraints c = new GridBagConstraints();
 			c.gridx = 0;
 			c.gridy = 0;
@@ -302,8 +304,8 @@ public class PackSchedulerGUI {
 	}
 	
 	/**
-	 * Creates a panel for students to register for classes.
-	 * @author Sarah Heckman
+	 * Creates a panel for student registration.
+	 * @author SarahHeckman
 	 */
 	private class StudentPanel extends JPanel implements ActionListener {
 
@@ -353,6 +355,8 @@ public class PackSchedulerGUI {
 			if (e.getSource() == btnLogout) {
 				RegistrationManager.getInstance().logout();
 				cardLayout.show(panel, LOGIN_PANEL);
+				updateTables();
+				pnlLogin.repaint();
 			}
 		}
 		

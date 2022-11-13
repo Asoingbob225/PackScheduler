@@ -36,7 +36,7 @@ import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
  * @author Sarah Heckman
  */
 public class CourseCatalogPanel extends JPanel implements ActionListener {
-
+	
 	/** ID used for object serialization */
 	private static final long serialVersionUID = 1L;
 
@@ -112,64 +112,64 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 	private JButton btnRemoveCourse;
 	/** Reference to CourseCatalog */
 	private CourseCatalog catalog;
-
+	
 	/**
-	 * Constructs the CourseCatalogPanel and sets up the GUI components.
+	 * Constructs the CourseCatalogPanel and sets up the GUI 
+	 * components.
 	 */
 	public CourseCatalogPanel() {
 		super(new GridBagLayout());
-
+		
 		catalog = RegistrationManager.getInstance().getCourseCatalog();
-
-		// Set up Catalog buttons
+		
+		//Set up Catalog buttons
 		btnNewCourseCatalog = new JButton("New Course Catalog");
 		btnNewCourseCatalog.addActionListener(this);
 		btnLoadCourseCatalog = new JButton("Load Course Catalog");
 		btnLoadCourseCatalog.addActionListener(this);
 		btnSaveCourseCatalog = new JButton("Save Course Catalog");
 		btnSaveCourseCatalog.addActionListener(this);
-
+		
 		JPanel pnlCatalogButton = new JPanel();
 		pnlCatalogButton.setLayout(new GridLayout(1, 3));
 		pnlCatalogButton.add(btnNewCourseCatalog);
 		pnlCatalogButton.add(btnLoadCourseCatalog);
 		pnlCatalogButton.add(btnSaveCourseCatalog);
-
+		
 		Border lowerEtched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 		TitledBorder border = BorderFactory.createTitledBorder(lowerEtched, "Catalog Buttons");
 		pnlCatalogButton.setBorder(border);
 		pnlCatalogButton.setToolTipText("Catalog Buttons");
-
-		// Set up Catalog table
+		
+		//Set up Catalog table
 		courseCatalogTableModel = new CourseCatalogTableModel();
 		tableCourseCatalog = new JTable(courseCatalogTableModel);
 		tableCourseCatalog.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableCourseCatalog.setPreferredScrollableViewportSize(new Dimension(500, 500));
 		tableCourseCatalog.setFillsViewportHeight(true);
-
-		scrollCourseCatalog = new JScrollPane(tableCourseCatalog, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
+		
+		scrollCourseCatalog = new JScrollPane(tableCourseCatalog, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		
 		border = BorderFactory.createTitledBorder(lowerEtched, "Course Catalog");
 		scrollCourseCatalog.setBorder(border);
 		scrollCourseCatalog.setToolTipText("Course Catalog");
-
-		// Set up Course buttons
+		
+		//Set up Course buttons
 		btnAddCourse = new JButton("Add Course");
 		btnAddCourse.addActionListener(this);
 		btnRemoveCourse = new JButton("Remove Course");
 		btnRemoveCourse.addActionListener(this);
-
+		
 		JPanel pnlCourseButtons = new JPanel();
 		pnlCourseButtons.setLayout(new GridLayout(1, 2));
 		pnlCourseButtons.add(btnAddCourse);
 		pnlCourseButtons.add(btnRemoveCourse);
-
+		
 		border = BorderFactory.createTitledBorder(lowerEtched, "Course Controls");
 		pnlCourseButtons.setBorder(border);
 		pnlCourseButtons.setToolTipText("Course Controls");
-
-		// Set up Course form
+		
+		//Set up Course form
 		lblName = new JLabel("Course Name");
 		lblTitle = new JLabel("Course Title");
 		lblSection = new JLabel("Section");
@@ -187,7 +187,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		comboCredits.addItem(Integer.valueOf(3));
 		comboCredits.addItem(Integer.valueOf(4));
 		comboCredits.addItem(Integer.valueOf(5));
-
+		
 		JPanel pnlDays = new JPanel(new GridLayout(1, 15));
 		pnlDays.add(new JLabel("Mon"));
 		cbMonday = new JCheckBox();
@@ -208,7 +208,8 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		cbArranged = new JCheckBox();
 		cbArranged.addItemListener(new ItemListener() {
 			/**
-			 * If the selected time is arranged, then the times are set to zero.
+			 * If the selected time is arranged, then the 
+			 * times are set to zero.
 			 */
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -217,7 +218,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 					comboStartMin.setSelectedIndex(0);
 					comboEndHour.setSelectedIndex(0);
 					comboEndMin.setSelectedIndex(0);
-
+					
 					cbMonday.setSelected(false);
 					cbTuesday.setSelected(false);
 					cbWednesday.setSelected(false);
@@ -225,14 +226,15 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 					cbFriday.setSelected(false);
 				}
 			}
-
+			
 		});
 		pnlDays.add(cbArranged);
-
+		
+		
 		JPanel pnlTime = new JPanel(new GridLayout(1, 2));
 		JPanel pnlStartTime = new JPanel(new GridLayout(1, 4));
 		JPanel pnlEndTime = new JPanel(new GridLayout(1, 4));
-
+		
 		comboStartHour = new JComboBox<Integer>();
 		comboStartHour.addItem(Integer.valueOf(0));
 		comboStartHour.addItem(Integer.valueOf(1));
@@ -263,12 +265,12 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		comboStartPeriod = new JComboBox<String>();
 		comboStartPeriod.addItem("AM");
 		comboStartPeriod.addItem("PM");
-
+		
 		pnlStartTime.add(lblStartTime);
 		pnlStartTime.add(comboStartHour);
 		pnlStartTime.add(comboStartMin);
 		pnlStartTime.add(comboStartPeriod);
-
+		
 		comboEndHour = new JComboBox<Integer>();
 		comboEndHour.addItem(Integer.valueOf(0));
 		comboEndHour.addItem(Integer.valueOf(1));
@@ -299,15 +301,15 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		comboEndPeriod = new JComboBox<String>();
 		comboEndPeriod.addItem("AM");
 		comboEndPeriod.addItem("PM");
-
+		
 		pnlEndTime.add(lblEndTime);
 		pnlEndTime.add(comboEndHour);
 		pnlEndTime.add(comboEndMin);
 		pnlEndTime.add(comboEndPeriod);
-
+		
 		pnlTime.add(pnlStartTime);
 		pnlTime.add(pnlEndTime);
-
+		
 		JPanel pnlCourseForm = new JPanel();
 		pnlCourseForm.setLayout(new GridLayout(8, 2));
 		pnlCourseForm.add(lblName);
@@ -326,11 +328,11 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		pnlCourseForm.add(pnlEndTime);
 		pnlCourseForm.add(lblMeetingDays);
 		pnlCourseForm.add(pnlDays);
-
+		
 		border = BorderFactory.createTitledBorder(lowerEtched, "Course Information");
 		pnlCourseForm.setBorder(border);
 		pnlCourseForm.setToolTipText("Course Information");
-
+		
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
@@ -339,7 +341,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.BOTH;
 		this.add(pnlCatalogButton, c);
-
+		
 		c.gridx = 0;
 		c.gridy = 1;
 		c.weightx = 1;
@@ -347,7 +349,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.BOTH;
 		this.add(scrollCourseCatalog, c);
-
+		
 		c.gridx = 0;
 		c.gridy = 2;
 		c.weightx = 1;
@@ -355,7 +357,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.BOTH;
 		this.add(pnlCourseButtons, c);
-
+		
 		c.gridx = 0;
 		c.gridy = 3;
 		c.weightx = 1;
@@ -363,14 +365,9 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		c.anchor = GridBagConstraints.LINE_START;
 		c.fill = GridBagConstraints.BOTH;
 		this.add(pnlCourseForm, c);
-
+		
 	}
 
-	/**
-	 * Respond to a GUI event specified by parameter.
-	 * 
-	 * @param e the event to respond to.
-	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLoadCourseCatalog) {
@@ -434,7 +431,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 			if (cbArranged.isSelected()) {
 				meetingDays += "A";
 			}
-
+			
 			int startTime = 0;
 			int hourIdx = comboStartHour.getSelectedIndex();
 			if (hourIdx == -1) {
@@ -456,7 +453,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 			if (comboStartPeriod.getItemAt(periodIdx).equals("PM") && startTime < 1200) {
 				startTime += 1200;
 			}
-
+			
 			int endTime = 0;
 			hourIdx = comboEndHour.getSelectedIndex();
 			if (hourIdx == -1) {
@@ -478,10 +475,9 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 			if (comboEndPeriod.getItemAt(periodIdx).equals("PM") && endTime < 1200) {
 				endTime += 1200;
 			}
-
+			
 			try {
-				if (catalog.addCourseToCatalog(name, title, section, credits, instructorId, enrollmentCap, meetingDays,
-						startTime, endTime)) {
+				if (catalog.addCourseToCatalog(name, title, section, credits, instructorId, enrollmentCap, meetingDays, startTime, endTime)) {
 					txtName.setText("");
 					txtTitle.setText("");
 					txtSection.setText("");
@@ -499,28 +495,26 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(this, "No course selected.");
 			} else {
 				try {
-					catalog.removeCourseFromCatalog(courseCatalogTableModel.getValueAt(row, 0).toString(),
-							courseCatalogTableModel.getValueAt(row, 1).toString());
+					catalog.removeCourseFromCatalog(courseCatalogTableModel.getValueAt(row, 0).toString(), courseCatalogTableModel.getValueAt(row, 1).toString());
 				} catch (ArrayIndexOutOfBoundsException aioobe) {
 					JOptionPane.showMessageDialog(this, "No course selected.");
 				}
 			}
 			courseCatalogTableModel.updateData();
 		}
-
+		
 		this.validate();
 		this.repaint();
 	}
-
+	
 	/**
 	 * Returns a file name generated through interactions with a JFileChooser
 	 * object.
-	 * 
 	 * @param chooserType true if open, false if save
 	 * @return the file name selected through JFileChooser
 	 */
 	private String getFileName(boolean chooserType) {
-		JFileChooser fc = new JFileChooser("./"); // Open JFileChoose to current working directory
+		JFileChooser fc = new JFileChooser("./");  //Open JFileChoose to current working directory
 		fc.setApproveButtonText("Select");
 		int returnVal = Integer.MIN_VALUE;
 		if (chooserType) {
@@ -531,28 +525,27 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 			returnVal = fc.showSaveDialog(this);
 		}
 		if (returnVal != JFileChooser.APPROVE_OPTION) {
-			// Error or user canceled, either way no file name.
-			throw new IllegalStateException("Invalid selection.");
+			//Error or user canceled, either way no file name.
+			throw new IllegalStateException();
 		}
 		File catalogFile = fc.getSelectedFile();
 		return catalogFile.getAbsolutePath();
 	}
-
+	
 	/**
-	 * CourseCatalogTableModel is the object underlying the JTable object that
-	 * displays the list of Courses to the user.
-	 * 
+	 * CourseCatalogTableModel is the object underlying the JTable object that displays
+	 * the list of Courses to the user.
 	 * @author Sarah Heckman
 	 */
 	private class CourseCatalogTableModel extends AbstractTableModel {
-
+		
 		/** ID number used for object serialization. */
 		private static final long serialVersionUID = 1L;
 		/** Column names for the table */
-		private String[] columnNames = { "Name", "Section", "Title", "Meeting Information", "Open Seats" };
+		private String [] columnNames = {"Name", "Section", "Title", "Meeting Information", "Open Seats"};
 		/** Data stored in the table */
-		private Object[][] data;
-
+		private Object [][] data;
+		
 		/**
 		 * Constructs the CourseCatalogTableModel by requesting the latest information
 		 * from the RequirementTrackerModel.
@@ -563,7 +556,6 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 
 		/**
 		 * Returns the number of columns in the table.
-		 * 
 		 * @return the number of columns in the table.
 		 */
 		public int getColumnCount() {
@@ -572,18 +564,16 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 
 		/**
 		 * Returns the number of rows in the table.
-		 * 
 		 * @return the number of rows in the table.
 		 */
 		public int getRowCount() {
-			if (data == null)
+			if (data == null) 
 				return 0;
 			return data.length;
 		}
-
+		
 		/**
 		 * Returns the column name at the given index.
-		 * 
 		 * @param col column index
 		 * @return the column name at the given column.
 		 */
@@ -593,7 +583,6 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 
 		/**
 		 * Returns the data at the given {row, col} index.
-		 * 
 		 * @param row row index
 		 * @param col column index
 		 * @return the data at the given location.
@@ -603,19 +592,18 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 				return null;
 			return data[row][col];
 		}
-
+		
 		/**
 		 * Sets the given value to the given {row, col} location.
-		 * 
 		 * @param value Object to modify in the data.
-		 * @param row   location to modify the data.
-		 * @param col   location to modify the data.
+		 * @param row location to modify the data.
+		 * @param col location to modify the data.
 		 */
 		public void setValueAt(Object value, int row, int col) {
 			data[row][col] = value;
 			fireTableCellUpdated(row, col);
 		}
-
+		
 		/**
 		 * Updates the given model with Course information from the CourseCatalog.
 		 */
