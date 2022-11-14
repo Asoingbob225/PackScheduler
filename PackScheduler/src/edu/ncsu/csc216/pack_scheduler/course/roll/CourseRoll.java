@@ -2,6 +2,7 @@ package edu.ncsu.csc216.pack_scheduler.course.roll;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
+import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 import edu.ncsu.csc216.pack_scheduler.util.ArrayQueue;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
 
@@ -19,6 +20,9 @@ public class CourseRoll {
 	/** Maximum number of allowed students */
 	private int enrollmentCap;
 	
+	/** Course variable */
+	private Course course;
+	
 	/** List of students */
 	private ArrayQueue<Student> waitlist;
 
@@ -30,17 +34,18 @@ public class CourseRoll {
 	
 	/**
 	 * Constructor for CourseRoll
-	 * @param c type of Course
+	 * @param course type of Course
 	 * @param enrollmentCap maximum number of enrolled students
 	 */
-	public CourseRoll(Course c, int enrollmentCap) {
-		if(c == null)
+	public CourseRoll(Course course, int enrollmentCap) {
+		if(course == null)
 		{
 			throw new IllegalArgumentException();
 		}
 		setEnrollmentCap(enrollmentCap);
 		roll = new LinkedAbstractList<>(enrollmentCap);
 		waitlist = new ArrayQueue<Student>(10);
+		this.course = course;
 	}
 
 	/**
@@ -103,11 +108,11 @@ public class CourseRoll {
 		}
 		else
 		{
-			try {
-				roll.add(s);
-			} catch (Exception e) {
-				throw new IllegalArgumentException();
-			}
+//			try {
+			roll.add(s);
+//			} catch (Exception e) {
+//				throw new IllegalArgumentException();
+//			}
 		}
 		
 		
@@ -123,14 +128,14 @@ public class CourseRoll {
 		if(s == null) {
 			throw new IllegalArgumentException();
 		}
-		try {
-			roll.remove(s);
-			if(waitlist.size() > 0)
-			{
-				enroll(waitlist.dequeue());
-			}
-		} catch (Exception e) {
-			throw new IllegalArgumentException();
+
+		roll.remove(s);
+		if(waitlist.size() > 0)
+		{
+			Student s1 = waitlist.dequeue();
+			roll.add(s1);
+			Schedule schedule = s1.getSchedule();
+			schedule.addCourseToSchedule(course);
 		}
 	}
 	
