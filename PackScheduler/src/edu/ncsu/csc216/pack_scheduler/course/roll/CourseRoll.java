@@ -123,14 +123,11 @@ public class CourseRoll {
 		if(s == null) {
 			throw new IllegalArgumentException();
 		}
-		try {
-			roll.remove(s);
-			if(waitlist.size() > 0)
-			{
-				roll.add(waitlist.dequeue());
-			}
-		} catch (Exception e) {
-			throw new IllegalArgumentException();
+
+		roll.remove(s);
+		if(waitlist.size() > 0)
+		{
+			roll.add(waitlist.dequeue());
 		}
 	}
 	
