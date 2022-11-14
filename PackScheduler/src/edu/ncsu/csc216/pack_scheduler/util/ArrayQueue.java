@@ -40,13 +40,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	public void enqueue(E element) {
 		if (size() < capacity) {
 
-			if (size() == 0) {
-				queue.add(element);
-				
-			} else {
-				queue.add(size() - 1, element);
-				
-			}
+			queue.add(element);
 			
 			capacity++;
 
