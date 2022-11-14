@@ -42,7 +42,7 @@ public class ArrayQueue<E> implements Queue<E> {
 
 			queue.add(element);
 			
-			capacity++;
+//			capacity++;
 
 		} else {
 			throw new IllegalArgumentException();
@@ -60,7 +60,7 @@ public class ArrayQueue<E> implements Queue<E> {
 		if (isEmpty()) {
 			throw new NoSuchElementException();
 		}
-		capacity--;
+//		capacity--;
 		return queue.remove(0);
 	}
 

@@ -124,10 +124,17 @@ public class CourseRollTest {
 		
 		//Test waitlist Functionality with drop
 		Student k = new Student("Student 11", lastName, id, email, hashPW, 15);
+		Student l = new Student("Student 12", lastName, id, email, hashPW, 15);
+		Student m = new Student("Student 13", lastName, id, email, hashPW, 15);
 		cRoll.enroll(k);
+		cRoll.enroll(l);
+		cRoll.enroll(m);
+		
+		cRoll.drop(k);
 		cRoll.drop(a);
-		cRoll.drop(b);
-		assertEquals(1, cRoll.getOpenSeats());
+
+//		cRoll.drop(b);
+		assertEquals(0, cRoll.getOpenSeats());
 
 	}
 	
