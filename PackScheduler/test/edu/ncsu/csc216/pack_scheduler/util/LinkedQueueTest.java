@@ -8,8 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**
+ * Tests LinkedQueue class
+ * 
  * @author adharsh
- *
  */
 class LinkedQueueTest {
 

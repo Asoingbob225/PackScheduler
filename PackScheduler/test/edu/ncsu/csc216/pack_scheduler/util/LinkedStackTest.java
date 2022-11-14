@@ -10,8 +10,9 @@ import java.util.EmptyStackException;
 import org.junit.jupiter.api.Test;
 
 /**
+ * Tests LinkedStack class
+ * 
  * @author stbeuav
- *
  */
 class LinkedStackTest {
 
