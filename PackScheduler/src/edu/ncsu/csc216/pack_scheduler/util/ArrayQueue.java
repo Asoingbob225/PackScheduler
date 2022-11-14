@@ -49,7 +49,7 @@ public class ArrayQueue<E> implements Queue<E> {
 		} else {
 			throw new IllegalArgumentException();
 		}
-		size++;
+		capacity++;
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class ArrayQueue<E> implements Queue<E> {
 		if (isEmpty()) {
 			throw new NoSuchElementException();
 		}
-		size--;
+		capacity--;
 		return queue.remove(0);
 	}
 
