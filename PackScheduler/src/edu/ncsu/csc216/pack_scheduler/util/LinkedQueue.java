@@ -33,11 +33,8 @@ public class LinkedQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public void enqueue(E element) {
-		try {
-			queue.add(element);
-		} catch (Exception e) {
-			throw new IllegalArgumentException();
-		}
+		queue.add(size(), element);
+		
 	}
 
 	/**
@@ -49,7 +46,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	@Override
 	public E dequeue() {
 		if (isEmpty()) {
-			throw new EmptyStackException();
+			throw new NoSuchElementException();
 		}
 		return queue.remove(0);
 	}

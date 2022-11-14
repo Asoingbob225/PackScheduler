@@ -17,6 +17,8 @@ public class ArrayQueue<E> implements Queue<E> {
 	/** The maximum number of elements this queue can hold **/
 	private int capacity;
 	
+//	/** The size of this queue */
+//	private int size;
 
 	/**
 	 * Constructor for ArrayList-based queue
@@ -37,7 +39,11 @@ public class ArrayQueue<E> implements Queue<E> {
 	@Override
 	public void enqueue(E element) {
 		if (size() < capacity) {
+
 			queue.add(element);
+			
+			capacity++;
+
 		} else {
 			throw new IllegalArgumentException();
 		}
