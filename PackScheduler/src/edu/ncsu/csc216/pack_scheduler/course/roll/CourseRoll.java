@@ -166,10 +166,7 @@ public class CourseRoll {
 				return false;
 			}
 		}
-		if(waitlist.size() == 10) {
-			return false;
-		}
-		return true;
+		return !(waitlist.size() == 10);
 		
 	}
 	
