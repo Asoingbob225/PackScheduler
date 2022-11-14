@@ -74,6 +74,7 @@ class LinkedQueueTest {
 	@Test
 	void testSetCapacity() {
 		LinkedQueue<Integer> s = new LinkedQueue<Integer>(10);
+		s.setCapacity(11);
 		s.enqueue(9);
 		s.enqueue(2);
 		s.enqueue(4);
