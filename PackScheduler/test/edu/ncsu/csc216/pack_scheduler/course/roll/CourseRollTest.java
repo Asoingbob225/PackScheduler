@@ -132,7 +132,6 @@ public class CourseRollTest {
 		
 		assertEquals(3, cRoll.getNumberOnWaitlist());
 
-		
 		cRoll.drop(k);
 		
 		assertEquals(2, cRoll.getNumberOnWaitlist());
