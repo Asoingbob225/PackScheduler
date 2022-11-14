@@ -108,11 +108,7 @@ public class CourseRoll {
 		}
 		else
 		{
-//			try {
 			roll.add(s);
-//			} catch (Exception e) {
-//				throw new IllegalArgumentException();
-//			}
 		}
 		
 		
@@ -129,8 +125,7 @@ public class CourseRoll {
 			throw new IllegalArgumentException();
 		}
 
-		roll.remove(s);
-		if(waitlist.size() > 0)
+		if(roll.remove(s) && waitlist.size() > 0)
 		{
 			Student s1 = waitlist.dequeue();
 			roll.add(s1);
