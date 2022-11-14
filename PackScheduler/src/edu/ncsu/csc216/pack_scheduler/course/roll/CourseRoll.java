@@ -124,7 +124,23 @@ public class CourseRoll {
 		if(s == null) {
 			throw new IllegalArgumentException();
 		}
-
+		
+				
+		if (waitlist.contains(s)) {
+			Student first = waitlist.dequeue();
+			waitlist.enqueue(first);
+			boolean finished = false;
+			while (finished) {
+				Student current = waitlist.dequeue();
+				if (!s.equals(current)) {
+					waitlist.enqueue(current);
+					if (current.equals(first)) {
+						finished = true;
+					}
+				}
+			}
+		}
+		
 		if(roll.remove(s) && waitlist.size() > 0)
 		{
 			Student s1 = waitlist.dequeue();
