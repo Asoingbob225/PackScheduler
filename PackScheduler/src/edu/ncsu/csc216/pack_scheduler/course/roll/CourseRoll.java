@@ -127,7 +127,7 @@ public class CourseRoll {
 			roll.remove(s);
 			if(waitlist.size() > 0)
 			{
-				roll.add(waitlist.dequeue());
+				enroll(waitlist.dequeue());
 			}
 		} catch (Exception e) {
 			throw new IllegalArgumentException();

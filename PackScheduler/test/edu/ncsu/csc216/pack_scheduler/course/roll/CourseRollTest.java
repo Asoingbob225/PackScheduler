@@ -126,7 +126,8 @@ public class CourseRollTest {
 		Student k = new Student("Student 11", lastName, id, email, hashPW, 15);
 		cRoll.enroll(k);
 		cRoll.drop(a);
-		assertEquals(0, cRoll.getOpenSeats());
+		cRoll.drop(b);
+		assertEquals(1, cRoll.getOpenSeats());
 
 	}
 	

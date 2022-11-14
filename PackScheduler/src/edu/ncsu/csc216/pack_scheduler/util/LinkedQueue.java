@@ -33,15 +33,11 @@ public class LinkedQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public void enqueue(E element) {
-		if(size() == 0)
-		{
+		try {
 			queue.add(element);
+		} catch (Exception e) {
+			throw new IllegalArgumentException();
 		}
-		else
-		{
-			queue.add(size() - 1, element);
-		}
-		
 	}
 
 	/**

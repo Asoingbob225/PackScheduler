@@ -37,9 +37,9 @@ class LinkedQueueTest {
 		assertEquals(1, s.size());
 		s.enqueue(6);
 		assertEquals(2, s.size());
-		s.dequeue();
+		assertEquals(9, s.dequeue());
 		assertEquals(1, s.size());
-		s.dequeue();
+		assertEquals(6, s.dequeue());
 		assertEquals(0, s.size());
 
 	}
