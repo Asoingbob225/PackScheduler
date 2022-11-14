@@ -129,7 +129,7 @@ public class CourseRoll {
 		{
 			Student s1 = waitlist.dequeue();
 			roll.add(s1);
-			Schedule schedule = s1.getSchedule();
+			Schedule schedule = s1.getSchedule(); 
 			schedule.addCourseToSchedule(course);
 		}
 	}
