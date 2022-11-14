@@ -11,6 +11,6 @@ Finished Implementing Waitlist functionality | Owner: Adharsh Rajagopal Due: 11/
 
 Finished Testing Waitlist functionality | Owner: Davis Bryant  Due: 11/14, Status: Complete
 
-General Debugging | Owner:Adharsh Due:11/14, Status: In Progress
+General Debugging | Owner:Adharsh Due:11/14, Status: Complete
 
-Javadoc | Owner: Davis Bryant Due:11/14, Status: 
+Javadoc | Owner: Davis Bryant Due:11/14, Status: Complete
