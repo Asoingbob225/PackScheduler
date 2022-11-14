@@ -9,4 +9,8 @@ Evaluate Runtime Efficiency and Optimize LinkedAbstractList | Owner: Jimin Yu Du
 
 Finished Implementing Waitlist functionality | Owner: Adharsh Rajagopal Due: 11/14, Status: Complete
 
-Finished Testing Waitlist functionality | Owner:  Due: 11/14, Status: 
+Finished Testing Waitlist functionality | Owner: Davis Bryant  Due: 11/14, Status: Complete
+
+General Debugging | Owner: Davis Bryant Due:11/14, Status: In Progress
+
+Javadoc | Owner: tba Due:11/14, Status: 

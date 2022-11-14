@@ -17,8 +17,6 @@ public class ArrayQueue<E> implements Queue<E> {
 	/** The maximum number of elements this queue can hold **/
 	private int capacity;
 	
-	/** The size of this queue */
-	private int size;
 
 	/**
 	 * Constructor for ArrayList-based queue
@@ -43,7 +41,6 @@ public class ArrayQueue<E> implements Queue<E> {
 		} else {
 			throw new IllegalArgumentException();
 		}
-		size++;
 	}
 
 	/**
@@ -57,7 +54,6 @@ public class ArrayQueue<E> implements Queue<E> {
 		if (isEmpty()) {
 			throw new NoSuchElementException();
 		}
-		capacity--;
 		return queue.remove(0);
 	}
 
