@@ -130,8 +130,22 @@ public class CourseRollTest {
 		cRoll.enroll(l);
 		cRoll.enroll(m);
 		
+		assertEquals(3, cRoll.getNumberOnWaitlist());
+
+		
 		cRoll.drop(k);
+		
+		assertEquals(2, cRoll.getNumberOnWaitlist());
+		
 		cRoll.drop(a);
+		
+		assertEquals(1, cRoll.getNumberOnWaitlist());
+		
+		cRoll.drop(b);
+		
+		assertEquals(0, cRoll.getNumberOnWaitlist());
+		
+		
 
 //		cRoll.drop(b);
 		assertEquals(0, cRoll.getOpenSeats());

@@ -128,9 +128,13 @@ public class CourseRoll {
 				
 		if (waitlist.contains(s)) {
 			Student first = waitlist.dequeue();
-			waitlist.enqueue(first);
 			boolean finished = false;
-			while (finished) {
+			if (first.equals(s)) {
+				finished = true;
+			} else {
+				waitlist.enqueue(first);
+			}
+			while (!finished) {
 				Student current = waitlist.dequeue();
 				if (!s.equals(current)) {
 					waitlist.enqueue(current);
