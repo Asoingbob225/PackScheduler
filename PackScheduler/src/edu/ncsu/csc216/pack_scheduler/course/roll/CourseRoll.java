@@ -108,11 +108,11 @@ public class CourseRoll {
 		}
 		else
 		{
-			try {
-				roll.add(s);
-			} catch (Exception e) {
-				throw new IllegalArgumentException();
-			}
+//			try {
+			roll.add(s);
+//			} catch (Exception e) {
+//				throw new IllegalArgumentException();
+//			}
 		}
 		
 		
