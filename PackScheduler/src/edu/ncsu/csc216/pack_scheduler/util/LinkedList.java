@@ -168,7 +168,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 * @throws IndexOutOfBounds if the target index is out of bounds for the list
 		 */
 		public LinkedListIterator(int index) {
-			if (index < 0 || index > size() - 1) {
+			if (index < 0 || index > size()) {
 				throw new IndexOutOfBoundsException();
 			}
 
@@ -195,7 +195,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public boolean hasNext() {
-			if (next() != null) {
+			if (nextListNode != null) {
 				return true;
 			}
 
@@ -236,7 +236,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public boolean hasPrevious() {
-			if (previous() != null) {
+			if (previousListNode != null) {
 				return true;
 			}
 
