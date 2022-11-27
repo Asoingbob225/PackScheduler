@@ -30,9 +30,8 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	 */
 	public LinkedList() {
 		front = new ListNode(null);
-		back = new ListNode(null);
+		back = new ListNode(null, null, front);
 		front.next = back;
-		back.prev = front;
 		size = 0;
 	}
 
