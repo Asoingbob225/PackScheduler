@@ -29,7 +29,9 @@ public class LinkedListTest {
 		LinkedList<String> list = new LinkedList<String>();
 		list.add(0, "A");
 		assertEquals(1, list.size());
+		list.add(1, "B");
 		assertEquals("A", list.get(0));
+		assertEquals("B", list.get(1));
 		
 		assertThrows(IndexOutOfBoundsException.class, () -> list.add(-1, "1"));
 		assertThrows(IndexOutOfBoundsException.class, () -> list.add(list.size() + 1, "1"));
@@ -49,7 +51,7 @@ public class LinkedListTest {
 		}
 
 		assertEquals("9", list.remove(9));
-		assertThrows(IndexOutOfBoundsException.class, () ->  list.get(9));
+		assertThrows(IndexOutOfBoundsException.class, () ->  list.get(10));
 
 		assertThrows(IndexOutOfBoundsException.class, () -> list.remove(-1));
 		assertThrows(IndexOutOfBoundsException.class, () -> list.remove(list.size() + 1));
@@ -70,7 +72,6 @@ public class LinkedListTest {
 			assertEquals(String.valueOf(i), list.set(i, String.valueOf(i + 100)));
 			assertEquals(String.valueOf(i + 100), list.get(i));
 		}
-		assertThrows(NullPointerException.class, () -> list.set(1, null));
 
 		assertThrows(IllegalArgumentException.class, () -> list.set(2, "9"));
 

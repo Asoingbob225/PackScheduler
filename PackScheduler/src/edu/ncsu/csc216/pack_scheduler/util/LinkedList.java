@@ -15,9 +15,6 @@ import java.util.NoSuchElementException;
  */
 public class LinkedList<E> extends AbstractSequentialList<E> {
 
-	/** The object reference for this node */
-	private E data;
-
 	/** Reference to next node in the list */
 	private ListNode front;
 
@@ -319,15 +316,19 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			ListNode temp = new ListNode(e);
 
 			if (size == 0) {
+				front.next = temp;
 				temp.prev = front;
+				temp.next = back;
+				back.prev = temp;
 				previousListNode = temp;
-				back = nextListNode;
-				back.prev = previousListNode;
+				
 
 			} else {
-				temp.prev = nextListNode.prev;
+				previousListNode.next = temp;
+				temp.prev = previousListNode;
+				temp.next = nextListNode;
+				nextListNode.prev = temp;
 				previousListNode = temp;
-				nextListNode.prev = previousListNode;
 			}
 
 			nextIndex++;
@@ -351,7 +352,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		@Override
 		public void set(E e) {
 			if (lastRetrieved == null) {
-				throw new IllegalArgumentException();
+				throw new IllegalStateException();
 			}
 
 			if (e == null) {
