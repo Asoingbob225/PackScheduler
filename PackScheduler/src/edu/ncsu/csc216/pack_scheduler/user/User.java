@@ -3,31 +3,31 @@ package edu.ncsu.csc216.pack_scheduler.user;
 import java.util.Objects;
 
 /**
- * Represents a user, has child Student
+ * Represents a user, has subclasses Student and Faculty
  * 
  * @author Davis Bryant
  */
 public abstract class User {
 
-	/** Students first name. */
+	/** User's first name. */
 	private String firstName;
-	/** Students last name. */
+	/** User's last name. */
 	private String lastName;
-	/** Students id. */
+	/** User's id. */
 	private String id;
-	/** Students email. */
+	/** User's email. */
 	private String email;
-	/** Students password. */
+	/** User's password. */
 	private String password;
 	
 	/**
 	 * Constructor that calls abstract class
 	 * 
-	 * @param firstName students first name
-	 * @param lastName  students last name
-	 * @param id        students id number as a string
-	 * @param email     students email
-	 * @param password  students password
+	 * @param firstName User's first name
+	 * @param lastName  User's last name
+	 * @param id        User's id number as a string
+	 * @param email     User's email
+	 * @param password  User's password
 	 */
 	public User(String firstName, String lastName, String id, String email, String password) {
 		setFirstName(firstName);
@@ -38,7 +38,7 @@ public abstract class User {
 	}
 
 	/**
-	 * gets Students email.
+	 * gets User's email.
 	 *
 	 * @return the email
 	 */
@@ -47,7 +47,7 @@ public abstract class User {
 	}
 
 	/**
-	 * sets Students email, checking that it meets requirements.
+	 * sets User's email, checking that it meets requirements.
 	 *
 	 * @param email the email to set
 	 * @throws IllegalArgumentException if the '@' or '.' character are missing or
@@ -80,7 +80,7 @@ public abstract class User {
 	}
 
 	/**
-	 * gets Students password.
+	 * gets User's password.
 	 *
 	 * @return the password
 	 */
@@ -89,7 +89,7 @@ public abstract class User {
 	}
 
 	/**
-	 * sets a Students password.
+	 * sets a User's password.
 	 *
 	 * @param password the password to set
 	 * @throws IllegalArgumentException if password is a null or empty string
@@ -102,16 +102,16 @@ public abstract class User {
 	}
 
 	/**
-	 * gets Students last name.
+	 * gets User's last name.
 	 *
-	 * @return Students last name
+	 * @return User's last name
 	 */
 	public String getLastName() {
 		return lastName;
 	}
 
 	/**
-	 * sets Students last name.
+	 * sets User's last name.
 	 *
 	 * @param lastName the lastName to set
 	 * @throws IllegalArgumentException if last name is a null or empty string
@@ -124,16 +124,16 @@ public abstract class User {
 	}
 
 	/**
-	 * gets Students id.
+	 * gets User's id.
 	 *
-	 * @return Students id
+	 * @return User's id
 	 */
 	public String getId() {
 		return id;
 	}
 
 	/**
-	 * sets Students id.
+	 * sets User's id.
 	 *
 	 * @param id the id to set
 	 * @throws IllegalArgumentException if id is a null or empty string
@@ -146,18 +146,18 @@ public abstract class User {
 	}
 
 	/**
-	 * gets Students first name.
+	 * gets User's first name.
 	 *
-	 * @return Students first name
+	 * @return User's first name
 	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
 	/**
-	 * sets a Students first name.
+	 * sets a User's first name.
 	 *
-	 * @param firstName the Students first name
+	 * @param firstName the User's first name
 	 * @throws IllegalArgumentException if Student name is a null or empty string
 	 */
 	public void setFirstName(String firstName) {
