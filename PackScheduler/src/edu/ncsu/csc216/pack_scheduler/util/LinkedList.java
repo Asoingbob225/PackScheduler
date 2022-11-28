@@ -66,7 +66,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	 */
 	@Override
 	public void add(int index, E element) {
-		if (contains(element)) {
+		if (element != null && contains(element)) {
 			throw new IllegalArgumentException();
 		}
 		super.add(index, element);
@@ -208,8 +208,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public boolean hasNext() {
-			return nextListNode != null;
-				
+			return nextListNode.data != null;
 		}
 
 		/**
@@ -246,7 +245,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		@Override
 		public boolean hasPrevious() {
-			return previousListNode != null;
+			return previousListNode.data != null;
 		}
 
 		/**
