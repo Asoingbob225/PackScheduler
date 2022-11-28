@@ -364,7 +364,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			}
 			
 			else {
-				
+				throw new IndexOutOfBoundsException();
 			}
 		}
 
@@ -387,14 +387,20 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			if (hasNext()) {
 				previousListNode = nextListNode.prev.prev;
 				previousListNode.next = nextListNode;
+				size--;
+
 			}
 
 			else if (hasPrevious()) {
 				nextListNode = previousListNode.next.next;
 				nextListNode.prev = previousListNode;
+				size--;
+
+			}
+			else {
+				throw new IndexOutOfBoundsException();
 			}
 
-			size--;
 
 		}
 
