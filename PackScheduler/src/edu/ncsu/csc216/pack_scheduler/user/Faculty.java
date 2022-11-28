@@ -6,7 +6,6 @@ package edu.ncsu.csc216.pack_scheduler.user;
 //import java.util.Objects;
 
 //import edu.ncsu.csc216.pack_scheduler.course.Course;
-import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 
 /**
  * The faculty class maintains information about a given faculty's first names,
