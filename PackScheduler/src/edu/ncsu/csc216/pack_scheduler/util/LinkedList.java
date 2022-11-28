@@ -355,10 +355,6 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 				throw new IllegalStateException();
 			}
 
-			if (e == null) {
-				throw new NullPointerException();
-			}
-
 			if (hasNext()) {
 				previousListNode.data = e;
 			}
