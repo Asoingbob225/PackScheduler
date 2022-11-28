@@ -9,15 +9,14 @@ import java.util.ListIterator;
 import org.junit.jupiter.api.Test;
 
 /**
- * The LinkedListTest class. It tests LinkedList
- * 
+ * This is the test class for LinkedList
  * @author Davis Bryant
  * @author Adharsh Rajagopal
  */
 public class LinkedListTest {
 	
 	/**
-	 * Tests the LinkedList Contructor
+	 * Tests the constructor for LinkedList
 	 */
 	@Test
 	public void linkedListTest() {

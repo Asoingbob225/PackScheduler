@@ -15,10 +15,12 @@ import java.util.NoSuchElementException;
  */
 public class LinkedList<E> extends AbstractSequentialList<E> {
 
-	/** Reference to next node in the list */
+	/** Reference to first node in the list */
 	private ListNode front;
 
-	/** Reference to previous node in the list */
+
+
+	/** Reference to last node in the list */
 	private ListNode back;
 
 	/** Reference to the size of the list */
@@ -101,7 +103,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		/** Reference to next node in the list */
 		private ListNode next;
 
-		/** Reference to next node in the list */
+		/** Reference to previous node in the list */
 		private ListNode prev;
 
 		/**
@@ -141,19 +143,19 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	 */
 	private class LinkedListIterator implements ListIterator<E> {
 
-		/** Reference to next node in the list */
+		/** Reference to previous node in the list */
 		private ListNode previousListNode;
 
 		/** Reference to next node in the list */
 		private ListNode nextListNode;
 
-		/** Reference to next node in the list */
+		/** Reference to last retrieved element in the list */
 		private ListNode lastRetrieved;
 
-		/** Reference to next node in the list */
+		/** Reference to index of the previous node in the list */
 		private int previousIndex;
 
-		/** Reference to next node in the list */
+		/** Reference to index of the next node in the list */
 		private int nextIndex;
 
 		/**
@@ -176,24 +178,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			while (hasNext() && index != nextIndex()) {
 				next();
 			}
-//			if(index > size / 2) {
-//				previousIndex = -1;
-//				nextIndex = 0;
-//
-//				previousListNode = front;
-//				nextListNode = previousListNode.next;
-//				while (nextIndex < index) {
-//					next();
-//				}
-//			} else {
-//				previousIndex = size - 1;
-//				nextIndex = size;
-//				previousListNode = back.prev;
-//				nextListNode = back;
-//				while (nextIndex > index) {
-//					previous();
-//				}
-//			}
+
 
 			lastRetrieved = null;
 
@@ -376,17 +361,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 
 			
 			lastRetrieved.data = e;
-//			if (hasNext()) {
-//				previousListNode.data = e;
-//			}
-//
-//			else if (hasPrevious()) {
-//				nextListNode.data = e;
-//			}
-			
-//			else {
-//				throw new IndexOutOfBoundsException();
-//			}
+
 
 
 		}
@@ -407,31 +382,13 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 				throw new IllegalArgumentException();
 			}
 			
-//			previousListNode = nextListNode.prev.prev;
-//			previousListNode.next = nextListNode;
-//			nextListNode = previousListNode.next.next;
-//			nextListNode.prev = previousListNode;
+
 			
 			lastRetrieved.prev.next = nextListNode;
 			lastRetrieved.next.prev = lastRetrieved.prev;
 			previousListNode = lastRetrieved.prev;
 			size--;
 			
-//			nextListNode.prev = previousListNode.prev;
-//			previousListNode.prev.next = nextListNode;
-//			if (hasNext()) {
-//				previousListNode = nextListNode.prev.prev;
-//				previousListNode.next = nextListNode;
-//				size--;
-//
-//			}
-//
-//			else if (hasPrevious()) {
-//				nextListNode = previousListNode.next.next;
-//				nextListNode.prev = previousListNode;
-//				size--;
-//
-//			}
 
 		}
 
