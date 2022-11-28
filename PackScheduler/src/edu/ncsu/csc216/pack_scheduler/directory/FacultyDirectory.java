@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
+import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 
@@ -174,6 +175,21 @@ public class FacultyDirectory {
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Unable to write to file " + fileName);
 		}
+	}
+	
+	/**
+	 * Returns student with provided id
+	 * 
+	 * @param id of student to be found
+	 * @return student of given id, null if student cannot be found
+	 */
+	public Faculty getFacultyById(String id) {
+	    for (int i = 0; i < facultyDirectory.size(); i++) {
+	        if (facultyDirectory.get(i).getId().equals(id)) {
+	            return facultyDirectory.get(i);
+	        }
+	    }
+	    return null;
 	}
 	
 }

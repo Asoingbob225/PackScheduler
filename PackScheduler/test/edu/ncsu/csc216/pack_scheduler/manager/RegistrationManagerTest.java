@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
@@ -106,6 +107,29 @@ public class RegistrationManagerTest {
 		// Calling getStudentDirectory again should not result in different values
 		sd2 = manager.getStudentDirectory();
 		assertEquals(sd1.getStudentDirectory().length, sd2.getStudentDirectory().length);
+	}
+	
+	/**
+	 * Test getStudentDirectory to make sure it returns a pointer to the correct
+	 * object and the same one each time.
+	 */
+	@Test
+	public void testGetFacultyDirectory() {
+		assertDoesNotThrow(() -> manager.getFacultyDirectory());
+
+		// Check that same address is returned each time
+		FacultyDirectory fd1 = manager.getFacultyDirectory();
+		FacultyDirectory fd2 = manager.getFacultyDirectory();
+		assertSame(fd1, fd2);
+
+		assertEquals(0, fd1.getFacultyDirectory().length);
+
+		fd1.loadFacultyFromFile("test-files/faculty_records.txt");
+		assertEquals(8, fd1.getFacultyDirectory().length);
+
+		// Calling getStudentDirectory again should not result in different values
+		fd2 = manager.getFacultyDirectory();
+		assertEquals(fd1.getFacultyDirectory().length, fd2.getFacultyDirectory().length);
 	}
 
 	/**

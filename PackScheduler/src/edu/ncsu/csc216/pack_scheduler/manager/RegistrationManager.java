@@ -11,7 +11,9 @@ import java.util.Properties;
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
@@ -35,6 +37,8 @@ public class RegistrationManager {
 	private CourseCatalog courseCatalog;
 	/** Directory of current students */
 	private StudentDirectory studentDirectory;
+	/** Directory of current faculty */
+	private FacultyDirectory facultyDirectory;
 	/** Registrar user */
 	private User registrar;
 	/** Current user */
@@ -52,6 +56,7 @@ public class RegistrationManager {
 		createRegistrar();
 		studentDirectory = new StudentDirectory();
 		courseCatalog = new CourseCatalog();
+		facultyDirectory = new FacultyDirectory();
 	}
 
 	/**
@@ -192,6 +197,15 @@ public class RegistrationManager {
 	public StudentDirectory getStudentDirectory() {
 		return studentDirectory;
 	}
+	
+	/**
+	 * Returns a FacultyDirectory object containing the list of faculty objects
+	 * 
+	 * @return a FacultyDirectory object
+	 */
+	public FacultyDirectory getFacultyDirectory() {
+		return facultyDirectory;
+	}
 
 	/**
 	 * Logs in the current user, first attempting to get a student from the
@@ -209,15 +223,23 @@ public class RegistrationManager {
 		if (currentUser != null) {
 			return false;
 		}
-
+		String localHashPW = hashPW(password);
+		
 		Student s = studentDirectory.getStudentById(id);
 
-		String localHashPW = hashPW(password);
 		if (s != null && s.getPassword().equals(localHashPW)) {
 			currentUser = s;
 			return true;
 		}
-
+		
+		Faculty f = facultyDirectory.getFacultyById(id);
+		
+		if (f != null && f.getPassword().equals(localHashPW)) {
+			currentUser = f;
+			return true;
+		}
+		
+		
 		boolean registrarLogin = false;
 		if (registrar.getId().equals(id)) {
 			registrarLogin = true;
@@ -226,7 +248,7 @@ public class RegistrationManager {
 				return true;
 			}
 		}
-		if (s != null || registrarLogin) {
+		if (s != null || f != null || registrarLogin) {
 			return false;
 		} else {
 			throw new IllegalArgumentException("User doesn't exist.");
