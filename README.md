@@ -7,6 +7,6 @@ Finish Implementing LinkedListIterator | Owner: Jimin Yu Due: 11/28, Status: Com
 
 Debugging LinkedListIterator | Owner: Davis Bryant Due: 11/28, Status: Complete
 
-Implement and Test Faculty/FacultyIO | 
+Implement and Test Faculty/FacultyIO | Owner: Adharsh Rajagopal DueL 11/28, Status: Complete
 
-Implement and Test Faculty Directory | Owner: Davis Bryant Due: 11/28, Status: In Progress
+Implement and Test Faculty Directory | Owner: Davis Bryant, Adharsh Rajagopal Due: 11/28, Status: Complete
