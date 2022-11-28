@@ -397,9 +397,6 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 				size--;
 
 			}
-//			else {
-//				throw new IndexOutOfBoundsException();
-//			}
 
 
 		}

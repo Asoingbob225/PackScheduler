@@ -88,6 +88,8 @@ public class LinkedListTest {
 		assertThrows(IndexOutOfBoundsException.class, () -> list.set(-1, "oieo"));
 		
 		assertThrows(IndexOutOfBoundsException.class, () -> list.set(list.size() + 1, "adsjlk"));
+		
+		
 	}
 	
 	
