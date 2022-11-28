@@ -23,7 +23,7 @@ import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
  */
 public class FacultyDirectory {
 	
-	/** List of students in the directory */
+	/** List of faculty in the directory */
 	private LinkedList<Faculty> facultyDirectory;
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
@@ -71,13 +71,13 @@ public class FacultyDirectory {
 	 * @param id         faculty's id number as a string
 	 * @param email      faculty's email
 	 * @param password   faculty's password
-	 * @param repeatPassword student's repeated password
+	 * @param repeatPassword faculty's repeated password
 	 * @param maxCourses the max number of faculty's courses
 	 * @return true if added
 	 * @throws IllegalArgumentException if the passwords are null, empty, or
 	 *                                  non-matching.
 	 */
-	public boolean addStudent(String firstName, String lastName, String id, String email, String password,
+	public boolean addFaculty(String firstName, String lastName, String id, String email, String password,
 			String repeatPassword, int maxCourses) {
 		String hashPW = "";
 		String repeatHashPW = "";
@@ -92,7 +92,7 @@ public class FacultyDirectory {
 			throw new IllegalArgumentException("Passwords do not match");
 		}
 
-		// If an IllegalArgumentException is thrown, it's passed up from Student
+		// If an IllegalArgumentException is thrown, it's passed up from Faculty
 		// to the GUI
 		Faculty f = new Faculty(firstName, lastName, id, email, password, maxCourses);
 
@@ -132,7 +132,7 @@ public class FacultyDirectory {
 	 * @param facultyId student's id
 	 * @return true if removed
 	 */
-	public boolean removeStudent(String facultyId) {
+	public boolean removeFaculty(String facultyId) {
 		for (int i = 0; i < facultyDirectory.size(); i++) {
 			User s = facultyDirectory.get(i);
 			if (s.getId().equals(facultyId)) {
@@ -161,9 +161,9 @@ public class FacultyDirectory {
 	}
 	
 	/**
-	 * Saves all students in the directory to a file.
+	 * Saves all faculty in the directory to a file.
 	 * 
-	 * @param fileName name of file to save students to.
+	 * @param fileName name of file to save faculty to.
 	 * @throws IllegalArgumentException if the file is unable to be written
 	 *                                  (IOException caught from
 	 *                                  readStudentRecords).
