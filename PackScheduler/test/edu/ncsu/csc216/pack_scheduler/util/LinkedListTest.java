@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 /**
- * 
+ * This is the test class for LinkedList and LinkedListIterator
  * 
  * @author Davis Bryant
  */
 public class LinkedListTest {
 	
 	/**
-	 * 
+	 * Tests the Constructor for LinkedList
 	 */
 	@Test
 	public void linkedListTest() {

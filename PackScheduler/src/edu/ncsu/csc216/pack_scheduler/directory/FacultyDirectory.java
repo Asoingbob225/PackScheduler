@@ -7,7 +7,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
-import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 
