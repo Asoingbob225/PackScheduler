@@ -1,7 +1,10 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.ListIterator;
 
 import org.junit.jupiter.api.Test;
 
@@ -89,6 +92,24 @@ public class LinkedListTest {
 		
 		assertThrows(IndexOutOfBoundsException.class, () -> list.set(list.size() + 1, "adsjlk"));
 		
+		
+	}
+	
+	/**
+	 * Tests constructor of Iterator, add, hasPrevious, and hasNext()
+	 */
+	@Test
+	public void iteratorTest() {
+		LinkedList<Integer> list = new LinkedList<>();
+		
+		for (int i = 0; i < 10; i++) {
+			list.add(i, i);
+		}
+		
+		ListIterator<Integer> it = list.listIterator(5);
+		assertTrue(it.hasPrevious());
+		it.previous();
+		assertTrue(it.hasNext());
 		
 	}
 	

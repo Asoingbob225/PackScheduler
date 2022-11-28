@@ -167,24 +167,33 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			if (index < 0 || index > size()) {
 				throw new IndexOutOfBoundsException();
 			}
-			if(index > size / 2) {
-				previousIndex = -1;
-				nextIndex = 0;
-
-				previousListNode = front;
-				nextListNode = previousListNode.next;
-				while (nextIndex < index) {
-					next();
-				}
-			} else {
-				previousIndex = size - 1;
-				nextIndex = size;
-				previousListNode = back.prev;
-				nextListNode = back;
-				while (nextIndex > index) {
-					previous();
-				}
+			this.previousListNode = front;
+			this.nextListNode = front.next;
+			this.previousIndex = -1;
+			this.nextIndex = 0;
+			
+			
+			while (hasNext() && index != nextIndex()) {
+				next();
 			}
+//			if(index > size / 2) {
+//				previousIndex = -1;
+//				nextIndex = 0;
+//
+//				previousListNode = front;
+//				nextListNode = previousListNode.next;
+//				while (nextIndex < index) {
+//					next();
+//				}
+//			} else {
+//				previousIndex = size - 1;
+//				nextIndex = size;
+//				previousListNode = back.prev;
+//				nextListNode = back;
+//				while (nextIndex > index) {
+//					previous();
+//				}
+//			}
 
 			lastRetrieved = null;
 
@@ -314,22 +323,29 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			}
 
 			ListNode temp = new ListNode(e);
-
-			if (size == 0) {
-				front.next = temp;
-				temp.prev = front;
-				temp.next = back;
-				back.prev = temp;
-				previousListNode = temp;
-				
-
-			} else {
-				previousListNode.next = temp;
-				temp.prev = previousListNode;
-				temp.next = nextListNode;
-				nextListNode.prev = temp;
-				previousListNode = temp;
-			}
+			
+			
+			previousListNode.next = temp;
+			temp.prev = previousListNode;
+			temp.next = nextListNode;
+			nextListNode.prev = temp;
+			previousListNode = temp;
+			
+//			if (size == 0) {
+//				front.next = temp;
+//				temp.prev = front;
+//				temp.next = back;
+//				back.prev = temp;
+//				previousListNode = temp;
+//				
+//
+//			} else {
+//				previousListNode.next = temp;
+//				temp.prev = previousListNode;
+//				temp.next = nextListNode;
+//				nextListNode.prev = temp;
+//				previousListNode = temp;
+//			}
 
 			nextIndex++;
 			previousIndex++;
@@ -354,14 +370,15 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			if (lastRetrieved == null) {
 				throw new IllegalStateException();
 			}
-
-			if (hasNext()) {
-				previousListNode.data = e;
-			}
-
-			else if (hasPrevious()) {
-				nextListNode.data = e;
-			}
+			
+			lastRetrieved.data = e;
+//			if (hasNext()) {
+//				previousListNode.data = e;
+//			}
+//
+//			else if (hasPrevious()) {
+//				nextListNode.data = e;
+//			}
 			
 //			else {
 //				throw new IndexOutOfBoundsException();
@@ -383,20 +400,32 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			if (lastRetrieved == null) {
 				throw new IllegalArgumentException();
 			}
-
-			if (hasNext()) {
-				previousListNode = nextListNode.prev.prev;
-				previousListNode.next = nextListNode;
-				size--;
-
-			}
-
-			else if (hasPrevious()) {
-				nextListNode = previousListNode.next.next;
-				nextListNode.prev = previousListNode;
-				size--;
-
-			}
+			
+//			previousListNode = nextListNode.prev.prev;
+//			previousListNode.next = nextListNode;
+//			nextListNode = previousListNode.next.next;
+//			nextListNode.prev = previousListNode;
+			
+			lastRetrieved.prev.next = nextListNode;
+			lastRetrieved.next.prev = lastRetrieved.prev;
+			previousListNode = lastRetrieved.prev;
+			size--;
+			
+//			nextListNode.prev = previousListNode.prev;
+//			previousListNode.prev.next = nextListNode;
+//			if (hasNext()) {
+//				previousListNode = nextListNode.prev.prev;
+//				previousListNode.next = nextListNode;
+//				size--;
+//
+//			}
+//
+//			else if (hasPrevious()) {
+//				nextListNode = previousListNode.next.next;
+//				nextListNode.prev = previousListNode;
+//				size--;
+//
+//			}
 
 
 		}
