@@ -279,6 +279,7 @@ public class RegistrationManager {
 	public void clearData() {
 		courseCatalog.newCourseCatalog();
 		studentDirectory.newStudentDirectory();
+		facultyDirectory.newFacultyDirectory();
 	}
 
 	/**

@@ -35,7 +35,7 @@ public class LinkedListTest {
 		
 		assertThrows(IndexOutOfBoundsException.class, () -> list.add(-1, "1"));
 		assertThrows(IndexOutOfBoundsException.class, () -> list.add(list.size() + 1, "1"));
-		
+		assertThrows(IllegalArgumentException.class, () -> list.add(2, "A"));
 		
 	}
 	

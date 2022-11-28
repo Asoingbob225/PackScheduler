@@ -362,6 +362,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			else if (hasPrevious()) {
 				nextListNode.data = e;
 			}
+			
+			else {
+				
+			}
 		}
 
 		/**

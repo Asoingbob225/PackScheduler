@@ -110,7 +110,7 @@ public class RegistrationManagerTest {
 	}
 	
 	/**
-	 * Test getStudentDirectory to make sure it returns a pointer to the correct
+	 * Test getFacultyDirectory to make sure it returns a pointer to the correct
 	 * object and the same one each time.
 	 */
 	@Test
@@ -127,7 +127,7 @@ public class RegistrationManagerTest {
 		fd1.loadFacultyFromFile("test-files/faculty_records.txt");
 		assertEquals(8, fd1.getFacultyDirectory().length);
 
-		// Calling getStudentDirectory again should not result in different values
+		// Calling getFactoryDirectory again should not result in different values
 		fd2 = manager.getFacultyDirectory();
 		assertEquals(fd1.getFacultyDirectory().length, fd2.getFacultyDirectory().length);
 	}
