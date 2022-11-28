@@ -95,7 +95,7 @@ public class FacultyDirectory {
 
 		// If an IllegalArgumentException is thrown, it's passed up from Faculty
 		// to the GUI
-		Faculty f = new Faculty(firstName, lastName, id, email, password, maxCourses);
+		Faculty f = new Faculty(firstName, lastName, id, email, hashPW, maxCourses);
 
 		for (int i = 0; i < facultyDirectory.size(); i++) {
 			User s = facultyDirectory.get(i);
