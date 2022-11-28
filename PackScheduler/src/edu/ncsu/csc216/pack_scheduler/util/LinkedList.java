@@ -18,7 +18,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	/** Reference to next node in the list */
 	private ListNode front;
 
-	/** Reference to next node in the list */
+	/** Reference to previous node in the list */
 	private ListNode back;
 
 	/** Reference to the size of the list */

@@ -55,6 +55,7 @@ public class ArrayStack<E> implements Stack<E> {
 	 * Removes element from top of list
 	 * 
 	 * @return element from top of list
+	 * @throws EmptyStackException if the ArrayStack is empty.
 	 */
 	@Override
 	public E pop() {

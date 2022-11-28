@@ -526,7 +526,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		}
 		if (returnVal != JFileChooser.APPROVE_OPTION) {
 			//Error or user canceled, either way no file name.
-			throw new IllegalStateException();
+			throw new IllegalStateException("Invalid selection.");
 		}
 		File catalogFile = fc.getSelectedFile();
 		return catalogFile.getAbsolutePath();

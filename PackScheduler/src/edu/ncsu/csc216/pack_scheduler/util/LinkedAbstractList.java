@@ -263,8 +263,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * not in excess of the new capacity.
 	 * 
 	 * @param newCapacity the capacity to set
-	 * @throws IllegalArgumentException if the capacity is less than the size of the
-	 *                                  list.
+	 * @throws IllegalArgumentException if the capacity is less than the size of the list.
 	 */
 	public void setCapacity(int newCapacity) {
 		if (newCapacity < size()) {

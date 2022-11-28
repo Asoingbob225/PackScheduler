@@ -83,6 +83,10 @@ public class Course extends Activity implements Comparable<Course> {
 	    return roll;
 	}
 	
+	/**
+	 * Sets the enrollment cap for a given course
+	 * @param enrollmentCap the maximum number of allowed students
+	 */
 	private void setEnrollmentCap(int enrollmentCap) {
         roll = new CourseRoll(this, enrollmentCap);
         

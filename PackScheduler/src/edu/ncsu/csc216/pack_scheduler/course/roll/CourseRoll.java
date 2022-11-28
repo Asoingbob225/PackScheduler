@@ -36,6 +36,7 @@ public class CourseRoll {
 	 * Constructor for CourseRoll
 	 * @param course type of Course
 	 * @param enrollmentCap maximum number of enrolled students
+	 * @throws IllegalArgumentException if course is null
 	 */
 	public CourseRoll(Course course, int enrollmentCap) {
 		if(course == null)
@@ -61,6 +62,8 @@ public class CourseRoll {
 	 * Setter for enrollmentCap
 	 * 
 	 * @param enrollmentCap the maximum number of students allowed to enroll in a class
+	 * @throws IllegalArgumentException if enrollment cap is above the max enrollment or below the 
+	 * min enrollment cap. It is also thrown if enrollmentCap is null and if enrollementCap is less than the size of the roll.
 	 */
 	public void setEnrollmentCap(int enrollmentCap) {
 		if(enrollmentCap < MIN_ENROLLMENT || enrollmentCap > MAX_ENROLLMENT) {

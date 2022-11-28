@@ -30,7 +30,7 @@ public class LinkedStack<E> implements Stack<E> {
 	/** 
 	 * Adds element to top of stack
 	 * 
-	 *@param element element to be added
+	 * @param element element to be added
 	 */
 	@Override
 	public void push(E element) {
@@ -41,6 +41,7 @@ public class LinkedStack<E> implements Stack<E> {
 	 * Removes element from top of list
 	 * 
 	 * @return element from top of list
+	 * @throws EmptyStackException if LinkedStack is empty
 	 */
 	@Override
 	public E pop() {
