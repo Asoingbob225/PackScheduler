@@ -167,15 +167,23 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 			if (index < 0 || index > size()) {
 				throw new IndexOutOfBoundsException();
 			}
+			if(index > size / 2) {
+				previousIndex = -1;
+				nextIndex = 0;
 
-			previousIndex = -1;
-			nextIndex = 0;
-
-			previousListNode = front;
-			nextListNode = previousListNode.next;
-
-			while (nextIndex < index) {
-				next();
+				previousListNode = front;
+				nextListNode = previousListNode.next;
+				while (nextIndex < index) {
+					next();
+				}
+			} else {
+				previousIndex = size - 1;
+				nextIndex = size;
+				previousListNode = back.prev;
+				nextListNode = back;
+				while (nextIndex > index) {
+					previous();
+				}
 			}
 
 			lastRetrieved = null;
