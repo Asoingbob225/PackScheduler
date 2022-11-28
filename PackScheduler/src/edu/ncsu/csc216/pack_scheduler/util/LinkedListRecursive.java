@@ -3,6 +3,11 @@
  */
 package edu.ncsu.csc216.pack_scheduler.util;
 
+import javax.crypto.spec.DHPrivateKeySpec;
+import javax.management.loading.PrivateMLet;
+
+import org.junit.validator.PublicClassValidator;
+
 /**
  * @author Jimin Yu
  *
@@ -31,10 +36,84 @@ public class LinkedListRecursive<E> {
 		public ListNode(E data, ListNode next) {
 			this.data = data;
 			this.next = next;
+			
+		}
+		
+		private boolean contains(E element) {
+			if(data.equals(element)) {
+				return true;
+			} else if (next != null){
+				return next.contains(element);
+			}
+			return false;
+			
+		}
+		
+		private boolean add(E element) {
+			if(next == null) {
+				next = new ListNode(element, null);
+				size++;
+				return true;
+			}
+			return next.add(element);
+			
+		}
+		
+		private boolean add(int idx, E element) {
+			if(idx < 0) {
+				return false;
+			} else if(idx == 0) {
+				next = new ListNode(element, next);
+				size++;
+				return true;
+			} else if(next == null) {
+				return false;
+			} else {
+				 return next.add(idx - 1, element);
+			}
+		}
+		
+		private E get(int idx) {
+			if(idx < 0) {
+				return null;
+			} else if(idx == 0) {
+				return data;
+			} else if(next == null) {
+				return null;
+			} else {
+				 return next.get(idx - 1);
+			}
+			
+		}
+		
+		private E remove(int idx) {
+			if(idx <= 0) {
+				return null;
+			} else if(idx == 1) {
+				 E temp = next.data;
+				 next = next.next;
+				 return temp;
+			} else if(next == null) {
+				return null;
+			} else {
+				 return next.remove(idx - 1);
+			}
+		}
+		
+		private boolean remove(E element) {
+			if(next != null) {
+				if(next.data.equals(element)) {
+					 next = next.next;
+					 return true;
+				} else {
+					return next.remove(element);
+				}
+			}
+			return false;
+			
 		}
 		
 	}
-	
 	
 	private ListNode front;
 	
@@ -59,8 +138,7 @@ public class LinkedListRecursive<E> {
 			return false;
 		}
 
-		//recursion
-		return false;
+		return front.contains(element);
 	}
 	
 	public boolean add(E element) {
@@ -73,8 +151,7 @@ public class LinkedListRecursive<E> {
 			size++;
 			return true;
 		}
-		//recursion
-		return false;
+		return front.add(element);
 	}
 	
 	public boolean add(int idx, E element) {
@@ -94,16 +171,16 @@ public class LinkedListRecursive<E> {
 			size++;
 			return true;
 		}
-		//recursion
-		return false;
+		
+		return front.add(idx, element);
+		
 	}
 	
 	public E get(int idx) {
 		if (idx < 0 || idx > size()) {
 			throw new IndexOutOfBoundsException();
 		}
-		//recursion
-		return null;
+		return front.get(idx);
 	}
 	
 	public E remove(int idx) {
@@ -119,8 +196,7 @@ public class LinkedListRecursive<E> {
 			size--;
 			return removedData;
 		}
-		//recursion
-		return null;
+		return front.remove(idx);
 	}
 	
 	public boolean remove(E element) {
@@ -138,8 +214,7 @@ public class LinkedListRecursive<E> {
 			return true;
 		}
 		
-		//recursion
-		return false;
+		return front.remove(element);
 	}
 	
 	public E set(int idx, E element) {

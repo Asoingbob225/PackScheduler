@@ -41,11 +41,13 @@ class LinkedListRecursiveTest {
 	 */
 	@Test
 	void testAddE() {
-		LinkedListRecursive<Integer> l = new LinkedListRecursive<Integer>();
-		
-		assertTrue(l.add(1));
-		
-		//assertThrows(IllegalArgumentException.class, () -> l.add(1));
+		LinkedListRecursive<String> l = new LinkedListRecursive<String>();
+		assertTrue(l.add("1"));
+		assertTrue(l.add("2"));
+		assertTrue(l.contains("1"));
+		assertTrue(l.contains("2"));
+		assertEquals("1", l.get(0));
+		assertEquals("2", l.get(1));
 		
 		
 	}
@@ -55,12 +57,16 @@ class LinkedListRecursiveTest {
 	 */
 	@Test
 	void testAddIntE() {
-		LinkedListRecursive<Integer> l = new LinkedListRecursive<Integer>();
+		LinkedListRecursive<String> l = new LinkedListRecursive<String>();
 		
 		assertThrows(NullPointerException.class, () -> l.add(0, null));
-	    assertThrows(IndexOutOfBoundsException.class, () -> l.add(5, 1));
+	    assertThrows(IndexOutOfBoundsException.class, () -> l.add(5, "1"));
 	    
-	    assertTrue(l.add(0, 1));
+	    assertTrue(l.add(0, "1"));
+	    assertEquals("1", l.get(0));
+	    assertTrue(l.add(0, "2"));
+	    assertEquals("2", l.get(0));
+	    
 
 	}
 
@@ -74,6 +80,10 @@ class LinkedListRecursiveTest {
 		assertThrows(IndexOutOfBoundsException.class, () -> l.remove(-1));
 		
 		l.add("1");
+		l.add("2");
+		l.add("3");
+		assertEquals("2", l.remove(1));
+		assertFalse(l.contains("2"));
 		
 		assertEquals("1", l.remove(0));
 	}
@@ -88,8 +98,10 @@ class LinkedListRecursiveTest {
 		assertThrows(NullPointerException.class, () -> l.remove(null));
 		
 		l.add("1");
-		
-		//assertTrue(l.remove("1"));
+		l.add("2");
+		l.add("3");
+		assertTrue(l.remove("1"));
+		assertFalse(l.contains("1"));
 	}
 
 	/**
