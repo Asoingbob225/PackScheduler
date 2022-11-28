@@ -363,9 +363,9 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 				nextListNode.data = e;
 			}
 			
-			else {
-				throw new IndexOutOfBoundsException();
-			}
+//			else {
+//				throw new IndexOutOfBoundsException();
+//			}
 		}
 
 		/**
@@ -397,9 +397,9 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 				size--;
 
 			}
-			else {
-				throw new IndexOutOfBoundsException();
-			}
+//			else {
+//				throw new IndexOutOfBoundsException();
+//			}
 
 
 		}
