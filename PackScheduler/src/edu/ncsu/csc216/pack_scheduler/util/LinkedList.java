@@ -81,7 +81,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	 */
 	@Override
 	public E set(int index, E element) {
-		if (contains(element)) {
+		if (element != null && contains(element)) {
 			throw new IllegalArgumentException();
 		}
 		return super.set(index, element);
@@ -368,6 +368,10 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		public void set(E e) {
 			if (lastRetrieved == null) {
 				throw new IllegalStateException();
+			}
+			
+			if (e == null) {
+				throw new NullPointerException();
 			}
 
 			
