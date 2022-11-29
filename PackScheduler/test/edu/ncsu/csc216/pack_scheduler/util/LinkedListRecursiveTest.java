@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 class LinkedListRecursiveTest {
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.LinkedListRecursive#LinkedListRecursive()}.
+	 * Test method for constructor
 	 */
 	@Test
 	void testLinkedListRecursive() {
@@ -28,17 +28,19 @@ class LinkedListRecursiveTest {
 
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.LinkedListRecursive#contains(java.lang.Object)}.
+	 * Test method for contains() 
 	 */
 	@Test
 	void testContains() {
-		LinkedListRecursive<Integer> l = new LinkedListRecursive<Integer>();
+		LinkedListRecursive<String> l = new LinkedListRecursive<String>();
 		
-		assertFalse(l.contains(1));
+		assertFalse(l.contains("1"));
+		l.add("1");
+		assertTrue(l.contains("1"));
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.LinkedListRecursive#add(java.lang.Object)}.
+	 * Test method for add() method that uses element parameter
 	 */
 	@Test
 	void testAddE() {
@@ -54,7 +56,7 @@ class LinkedListRecursiveTest {
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.LinkedListRecursive#add(int, java.lang.Object)}.
+	 * Test method for add() method that uses element and index parameters
 	 */
 	@Test
 	void testAddIntE() {
@@ -73,7 +75,7 @@ class LinkedListRecursiveTest {
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.LinkedListRecursive#remove(int)}.
+	 * Test method for remove() method that uses index parameter
 	 */
 	@Test
 	void testRemoveInt() {
@@ -91,7 +93,7 @@ class LinkedListRecursiveTest {
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.LinkedListRecursive#remove(java.lang.Object)}.
+	 * Test method for remove() method that uses element parameter
 	 */
 	@Test
 	void testRemoveE() {
@@ -109,7 +111,7 @@ class LinkedListRecursiveTest {
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.pack_scheduler.util.LinkedListRecursive#set(int, java.lang.Object)}.
+	 * Test method for set()
 	 */
 	@Test
 	void testSet() {
