@@ -3,21 +3,18 @@
  */
 package edu.ncsu.csc216.pack_scheduler.util;
 
-import javax.crypto.spec.DHPrivateKeySpec;
-import javax.management.loading.PrivateMLet;
-
-import org.junit.validator.PublicClassValidator;
-
 /**
- * @author Jimin Yu
- *
+ * Linked List implementation using recursion
+ * 
+ * @author Jimin Yu, Davis Bryant
+ * @param <E> generic type
  */
 public class LinkedListRecursive<E> {
 	/**
 	 * The ListNode is a member of this LinkedList. It maintains a reference to a
 	 * generic-typed object and a reference to the next node in the list.
 	 * 
-	 * @author Jimin Yu
+	 * @author Jimin Yu, Davis Bryant
 	 */
 	private class ListNode {
 
@@ -60,9 +57,9 @@ public class LinkedListRecursive<E> {
 		}
 		
 		private boolean add(int idx, E element) {
-			if(idx < 0) {
+			if(idx <= 0) {
 				return false;
-			} else if(idx == 0) {
+			} else if(idx == 1) {
 				next = new ListNode(element, next);
 				size++;
 				return true;
@@ -111,6 +108,20 @@ public class LinkedListRecursive<E> {
 			}
 			return false;
 			
+		}
+		
+		private E set(int idx, E element) {
+			if(idx <= 0) {
+				return null;
+			} else if(idx == 1) {
+				 E temp = next.data;
+				 next.data = element;
+				 return temp;
+			} else if(next == null) {
+				return null;
+			} else {
+				 return next.remove(idx - 1);
+			}
 		}
 		
 	}
@@ -221,16 +232,13 @@ public class LinkedListRecursive<E> {
 		if (idx < 0 || idx > size()) {
 			throw new IndexOutOfBoundsException();
 		}
-		
 		E previousData;
-		
 		if (idx == 0) {
 			previousData = front.data;
 			front.data = element;
 			return previousData;
 		}
-		//recursion
-		return null;
+		return front.set(idx, element);
 	}
 	
 }

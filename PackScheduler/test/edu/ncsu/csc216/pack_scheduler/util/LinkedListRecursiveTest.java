@@ -8,8 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author Jimin Yu
- *
+ * Test class for LinkedListRecursive
+ * 
+ * @author Jimin Yu, Davis Bryant
  */
 class LinkedListRecursiveTest {
 
@@ -66,7 +67,8 @@ class LinkedListRecursiveTest {
 	    assertEquals("1", l.get(0));
 	    assertTrue(l.add(0, "2"));
 	    assertEquals("2", l.get(0));
-	    
+	    assertTrue(l.add(1, "3"));
+	    assertEquals("3", l.get(1));
 
 	}
 
@@ -102,6 +104,8 @@ class LinkedListRecursiveTest {
 		l.add("3");
 		assertTrue(l.remove("1"));
 		assertFalse(l.contains("1"));
+		assertTrue(l.remove("3"));
+		assertFalse(l.contains("3"));
 	}
 
 	/**
@@ -109,13 +113,16 @@ class LinkedListRecursiveTest {
 	 */
 	@Test
 	void testSet() {
-		LinkedListRecursive<Integer> l = new LinkedListRecursive<Integer>();
-
-		assertThrows(IndexOutOfBoundsException.class, () -> l.set(-1, 1));
+		LinkedListRecursive<String> l = new LinkedListRecursive<String>();
+		assertThrows(IndexOutOfBoundsException.class, () -> l.remove(-1));
+		l.add("1");
+		l.add("2");
+		l.add("3");
+		assertEquals("2", l.set(1, "A"));
+		assertEquals("A", l.get(1));
+		assertEquals("1", l.set(0, "B"));
+		assertEquals("B", l.get(0));
 		
-		l.add(5);
-		
-		assertEquals(5, l.set(0,  1));
 	}
 
 }
