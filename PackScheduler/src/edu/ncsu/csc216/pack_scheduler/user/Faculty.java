@@ -3,6 +3,8 @@
  */
 package edu.ncsu.csc216.pack_scheduler.user;
 
+import edu.ncsu.csc216.pack_scheduler.user.schedule.FacultySchedule;
+
 //import java.util.Objects;
 
 //import edu.ncsu.csc216.pack_scheduler.course.Course;
@@ -11,7 +13,7 @@ package edu.ncsu.csc216.pack_scheduler.user;
  * The faculty class maintains information about a given faculty's first names,
  * last names, ids, emails, passwords, and max number of courses. Allow users to view and
  * update fields, with the exception of the faculty's ID, which shouldn't be
- * updated.
+ * updated. It also maintains the schedule of the the faculty.
  * 
  * @author Adharsh Rajagopal
  *
@@ -25,6 +27,9 @@ public class Faculty extends User {
 
 	/** Faculty's max courses. */
 	private int maxCourses;
+	
+	/** schedule of type FacultySchedule */
+	private FacultySchedule schedule;
 
 	/**
 	 * Constructs a Faculty object with values for all fields.
@@ -39,6 +44,7 @@ public class Faculty extends User {
 	public Faculty(String firstName, String lastName, String id, String email, String password, int maxCourses) {
 		super(firstName, lastName, id, email, password);
 		setMaxCourses(maxCourses);
+		schedule = new FacultySchedule(id);
 	}
 
 	/**
@@ -62,6 +68,31 @@ public class Faculty extends User {
 			throw new IllegalArgumentException("Invalid max courses");
 		}
 		this.maxCourses = maxCourses;
+	}
+	
+	/**
+	 * Returns the schedule of type FacultySchedule
+	 * @return FacultySchedule
+	 */
+	public FacultySchedule getSchedule()
+	{
+		return schedule;
+	}
+	
+	/**
+	 * returns true if the number of scheduled courses is greater than 
+	 * the Faculty’s maxCourses
+	 * @return true or false based on if
+	 * the number of scheduled courses is greater than the Faculty's maxCourses
+	 */
+	public boolean isOverloaded()
+	{
+		if(schedule.getScheduledCourses().length > getMaxCourses())
+		{
+			return true;
+		}
+		
+		return false;
 	}
 
 	/**
