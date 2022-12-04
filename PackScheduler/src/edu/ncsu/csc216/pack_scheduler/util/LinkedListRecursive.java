@@ -79,8 +79,6 @@ public class LinkedListRecursive<E> {
 				next = new ListNode(element, next);
 				size++;
 				return true;
-			} else if(next == null) {
-				return false;
 			} else {
 				 return next.add(idx - 1, element);
 			}
@@ -97,8 +95,6 @@ public class LinkedListRecursive<E> {
 				return null;
 			} else if(idx == 0) {
 				return data;
-			} else if(next == null) {
-				return null;
 			} else {
 				 return next.get(idx - 1);
 			}
@@ -119,8 +115,6 @@ public class LinkedListRecursive<E> {
 				 next = next.next;
 				 size--;
 				 return temp;
-			} else if(next == null) {
-				return null;
 			} else {
 				 return next.remove(idx - 1);
 			}
@@ -161,8 +155,6 @@ public class LinkedListRecursive<E> {
 				 E temp = next.data;
 				 next.data = element;
 				 return temp;
-			} else if(next == null) {
-				return null;
 			} else {
 				 return next.remove(idx - 1);
 			}

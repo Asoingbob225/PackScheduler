@@ -108,6 +108,7 @@ class LinkedListRecursiveTest {
 		assertFalse(l.contains("1"));
 		assertTrue(l.remove("3"));
 		assertFalse(l.contains("3"));
+		assertFalse(l.remove("A"));
 	}
 
 	/**
