@@ -12,6 +12,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
 import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
@@ -70,7 +71,7 @@ public class CourseRecordIO {
 		}
 		// Close the Scanner b/c we're responsible with our file handles
 		fileReader.close();
-		// Return the Lis with all the courses we read!
+		// Return the List with all the courses we read!
 		return courses;
 	}
 
@@ -115,8 +116,14 @@ public class CourseRecordIO {
 				startTime = Integer.parseInt(lineReader.next());
 				endTime = Integer.parseInt(lineReader.next());
 
-				course = new Course(name, title, section, creditHours, instructor, enrollmentCap, meetingDay, startTime, endTime);
+				course = new Course(name, title, section, creditHours, null, enrollmentCap, meetingDay, startTime, endTime);
 			}
+			
+			if (RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructor) != null) {
+				course.setInstructorId(instructor);
+				RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructor).getSchedule().addCourseToSchedule(course);
+			}
+		
 
 			// If there are remaining elements, throw exception
 			if (lineReader.hasNext()) {

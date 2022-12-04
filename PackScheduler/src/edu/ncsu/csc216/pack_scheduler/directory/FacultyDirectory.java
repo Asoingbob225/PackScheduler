@@ -177,10 +177,10 @@ public class FacultyDirectory {
 	}
 	
 	/**
-	 * Returns student with provided id
+	 * Returns faculty with provided id
 	 * 
-	 * @param id of student to be found
-	 * @return student of given id, null if student cannot be found
+	 * @param id of faculty to be found
+	 * @return faculty of given id, null if faculty cannot be found
 	 */
 	public Faculty getFacultyById(String id) {
 	    for (int i = 0; i < facultyDirectory.size(); i++) {

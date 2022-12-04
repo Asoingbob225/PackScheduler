@@ -117,6 +117,7 @@ public class LinkedListRecursive<E> {
 			} else if(idx == 1) {
 				 E temp = next.data;
 				 next = next.next;
+				 size--;
 				 return temp;
 			} else if(next == null) {
 				return null;
@@ -136,6 +137,7 @@ public class LinkedListRecursive<E> {
 			if(next != null) {
 				if(next.data.equals(element)) {
 					 next = next.next;
+					 size--;
 					 return true;
 				} else {
 					return next.remove(element);
@@ -306,9 +308,9 @@ public class LinkedListRecursive<E> {
 	 * @return true if element could be removed, false if not
 	 */
 	public boolean remove(E element) {
-		if (element == null) {
-			throw new NullPointerException();
-		}
+//		if (element == null) {
+//			throw new NullPointerException();
+//		}
 		
 		if(!contains(element) || isEmpty()) {
 			return false;

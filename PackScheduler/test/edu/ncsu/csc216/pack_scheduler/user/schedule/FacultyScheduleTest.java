@@ -24,6 +24,7 @@ public class FacultyScheduleTest {
 	/** Course catalog */
 	private CourseCatalog catalog;
 
+
 	/**
 	 * Resets course_records.txt for use in other tests.
 	 */
@@ -43,6 +44,7 @@ public class FacultyScheduleTest {
 		
 		catalog = new CourseCatalog();
 		catalog.loadCoursesFromFile("test-files/course_records.txt");
+		
 	}
 	
 	/**
