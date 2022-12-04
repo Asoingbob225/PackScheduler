@@ -126,6 +126,7 @@ class LinkedListRecursiveTest {
 		assertEquals("1", l.set(0, "B"));
 		assertEquals("B", l.get(0));
 		
+		
 	}
 
 }

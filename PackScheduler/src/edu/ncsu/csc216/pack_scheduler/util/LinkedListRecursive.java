@@ -95,6 +95,8 @@ public class LinkedListRecursive<E> {
 				return null;
 			} else if(idx == 0) {
 				return data;
+			} else if(next == null) {
+				return null;
 			} else {
 				 return next.get(idx - 1);
 			}
@@ -156,7 +158,7 @@ public class LinkedListRecursive<E> {
 				 next.data = element;
 				 return temp;
 			} else {
-				 return next.remove(idx - 1);
+				 return next.set(idx - 1, element);
 			}
 			
 		}
@@ -327,6 +329,10 @@ public class LinkedListRecursive<E> {
 	public E set(int idx, E element) {
 		if (idx < 0 || idx > size()) {
 			throw new IndexOutOfBoundsException();
+		}
+		if (idx == 0 && front == null) {
+			front = new ListNode(element, null);
+			return null;
 		}
 		E previousData;
 		if (idx == 0) {
