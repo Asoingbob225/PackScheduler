@@ -120,9 +120,10 @@ public class CourseRecordIO {
 			}
 			
 			if (RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructorId) != null) {
-				course.setInstructorId(instructorId);
 				RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructorId).getSchedule().addCourseToSchedule(course);
 			}
+			
+			//System.out.println(course.getInstructorId());
 		
 
 			// If there are remaining elements, throw exception
