@@ -18,8 +18,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
@@ -108,7 +110,7 @@ public class RegistrationManagerTest {
 		sd2 = manager.getStudentDirectory();
 		assertEquals(sd1.getStudentDirectory().length, sd2.getStudentDirectory().length);
 	}
-	
+
 	/**
 	 * Test getFacultyDirectory to make sure it returns a pointer to the correct
 	 * object and the same one each time.
@@ -606,6 +608,119 @@ public class RegistrationManagerTest {
 				"Course should have all seats available after reset.");
 
 		manager.logout();
+	}
+
+	/**
+	 * Test method for RegistrationManager.addFacultyToSchedule()
+	 */
+	@Test
+	public void testAddFacultyToSchedule() {
+		StudentDirectory sd = manager.getStudentDirectory();
+		sd.loadStudentsFromFile("test-files/student_records.txt");
+
+		//login as registrar
+		manager.login(registrarUsername, registrarPassword);
+
+		CourseCatalog cc1 = manager.getCourseCatalog();
+		cc1.loadCoursesFromFile("test-files/course_records.txt");
+
+		Course c1 = cc1.getCourseFromCatalog("CSC116", "001");
+		Course c2 = cc1.getCourseFromCatalog("CSC216", "001");
+		Course c3 = cc1.getCourseFromCatalog("CSC316", "001");
+
+		Faculty f1 = new Faculty("Bill", "Gates", "bgates", "bgates@ncsu.edu", "micro111", 3);
+
+		//add courses to faculty's schedule then check the size of the schedule
+		assertTrue(manager.addFacultyToCourse(c1, f1));
+		assertTrue(manager.addFacultyToCourse(c2, f1));
+		assertEquals(2, f1.getSchedule().getNumScheduledCourses());
+
+		//logout as registrar then try adding a course with no user, then as a non-registrar user
+		manager.logout();
+		assertFalse(manager.addFacultyToCourse(c3, f1));
+		manager.login("zking", "pw");
+		assertFalse(manager.addFacultyToCourse(c3, f1));
+	}
+
+	/**
+	 * Test method for RegistrationManager.removeFacultyToSchedule()
+	 */
+	@Test
+	public void testRemoveFacultyToSchedule() {
+		StudentDirectory sd = manager.getStudentDirectory();
+		sd.loadStudentsFromFile("test-files/student_records.txt");
+
+		//login as registrar
+		manager.login(registrarUsername, registrarPassword);
+
+		CourseCatalog cc1 = manager.getCourseCatalog();
+		cc1.loadCoursesFromFile("test-files/course_records.txt");
+
+		Course c1 = cc1.getCourseFromCatalog("CSC116", "001");
+		Course c2 = cc1.getCourseFromCatalog("CSC216", "001");
+
+		Faculty f1 = new Faculty("Bill", "Gates", "bgates", "bgates@ncsu.edu", "micro111", 3);
+
+		//add courses to faculty's schedule
+		manager.addFacultyToCourse(c1, f1);
+		manager.addFacultyToCourse(c2, f1);
+		assertEquals(2, f1.getSchedule().getNumScheduledCourses());
+		
+		//test removing them and check the size
+		assertTrue(manager.removeFacultyFromCourse(c2, f1));
+		assertEquals(1, f1.getSchedule().getNumScheduledCourses());
+		assertTrue(manager.removeFacultyFromCourse(c1, f1));
+		assertEquals(0, f1.getSchedule().getNumScheduledCourses());
+		
+		//re-add course to test removing as non-registrar user or no currentUser
+		manager.addFacultyToCourse(c2, f1);
+		assertEquals(1, f1.getSchedule().getNumScheduledCourses());
+		
+		//logout as registrar then try removing a course as a non-registrar or null currentUser
+		manager.logout();
+		assertFalse(manager.removeFacultyFromCourse(c2, f1));
+		manager.login("zking", "pw");
+		assertFalse(manager.removeFacultyFromCourse(c2, f1));			
+	
+	}
+		
+	/**
+	 * Test method for RegistrationManager.resetFactorySchedule()
+	 */
+	@Test 
+	public void testResetFactorySchedule() {
+		StudentDirectory sd = manager.getStudentDirectory();
+		sd.loadStudentsFromFile("test-files/student_records.txt");
+		
+		//login as registrar
+		manager.login(registrarUsername, registrarPassword);
+
+		CourseCatalog cc1 = manager.getCourseCatalog();
+		cc1.loadCoursesFromFile("test-files/course_records.txt");
+
+		Course c1 = cc1.getCourseFromCatalog("CSC116", "001");
+		Course c2 = cc1.getCourseFromCatalog("CSC216", "001");
+
+		Faculty f1 = new Faculty("Bill", "Gates", "bgates", "bgates@ncsu.edu", "micro111", 3);
+
+		//add courses to faculty's schedule
+		manager.addFacultyToCourse(c1, f1);
+		manager.addFacultyToCourse(c2, f1);
+		
+		//reset the schedule and check to make sure the size of the schedule is 0
+		manager.resetFacultySchedule(f1);
+		assertEquals(0, f1.getSchedule().getNumScheduledCourses());
+		
+		//re-add courses to schedule to test resetting a schedule as a non-registrar or null currentUser
+		manager.addFacultyToCourse(c1, f1);
+		manager.addFacultyToCourse(c2, f1);
+		
+		manager.logout();
+		assertThrows(IllegalArgumentException.class, () -> manager.resetFacultySchedule(f1));
+
+		manager.login("zking", "pw");
+		assertThrows(IllegalArgumentException.class, () -> manager.resetFacultySchedule(f1));
+		
 	}
 
 }

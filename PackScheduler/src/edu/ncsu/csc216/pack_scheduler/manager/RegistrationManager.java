@@ -284,6 +284,49 @@ public class RegistrationManager {
 		studentDirectory.newStudentDirectory();
 		facultyDirectory.newFacultyDirectory();
 	}
+	
+	/**
+	 * Adds a course to a faculty member's schedule if the currentUser is the registrar
+	 * @param c the course to add
+	 * @param f the faculty member
+	 * @return true if course was added, false otherwise
+	 */
+	public boolean addFacultyToCourse(Course c, Faculty f) {
+		if (currentUser != null && currentUser == registrar) {
+			f.getSchedule().addCourseToSchedule(c);
+			return true;
+		}
+		return false;
+		
+	}
+	
+	/**
+	 * Removes a course from a faculty member's schedule if the currentUser is the registrar
+	 * @param c the course to remove
+	 * @param f the faculty member
+	 * @return true if course was removed, false otherwise
+	 */
+	public boolean removeFacultyFromCourse(Course c, Faculty f) {
+		if (currentUser != null && currentUser == registrar) {
+			f.getSchedule().removeCourseFromSchedule(c);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Resets the faculty member's schedule if the currentUser is the registrar
+	 * @param f the faculty member
+	 */
+	public void resetFacultySchedule(Faculty f) {
+		if (currentUser != null && currentUser == registrar) {
+			f.getSchedule().resetSchedule();
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
+	}
+	
 
 	/**
 	 * Static constructor for the inner Registrar class, which creates a single
