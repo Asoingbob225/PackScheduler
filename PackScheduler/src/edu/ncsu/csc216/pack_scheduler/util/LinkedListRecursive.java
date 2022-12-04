@@ -331,6 +331,9 @@ public class LinkedListRecursive<E> {
 		if (idx < 0 || idx > size() - 1 || isEmpty()) {
 			throw new IndexOutOfBoundsException();
 		}
+		if (element == null) {
+			throw new NullPointerException();
+		}
 		E previousData;
 		if (idx == 0) {
 			previousData = front.data;
