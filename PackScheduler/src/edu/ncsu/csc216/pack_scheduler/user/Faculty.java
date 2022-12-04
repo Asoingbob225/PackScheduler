@@ -11,9 +11,9 @@ import edu.ncsu.csc216.pack_scheduler.user.schedule.FacultySchedule;
 
 /**
  * The faculty class maintains information about a given faculty's first names,
- * last names, ids, emails, passwords, and max number of courses. Allow users to view and
- * update fields, with the exception of the faculty's ID, which shouldn't be
- * updated. It also maintains the schedule of the the faculty.
+ * last names, ids, emails, passwords, and max number of courses. Allow users to
+ * view and update fields, with the exception of the faculty's ID, which
+ * shouldn't be updated. It also maintains the schedule of the the faculty.
  * 
  * @author Adharsh Rajagopal
  *
@@ -22,12 +22,14 @@ public class Faculty extends User {
 	/** constant for the max number of courses that a faculty member can teach. */
 	public static final int MAX_COURSES = 3;
 
-	/** constant for the minimum number of courses that a faculty member can teach. */
+	/**
+	 * constant for the minimum number of courses that a faculty member can teach.
+	 */
 	public static final int MIN_COURSES = 1;
 
 	/** Faculty's max courses. */
 	private int maxCourses;
-	
+
 	/** schedule of type FacultySchedule */
 	private FacultySchedule schedule;
 
@@ -69,29 +71,28 @@ public class Faculty extends User {
 		}
 		this.maxCourses = maxCourses;
 	}
-	
+
 	/**
 	 * Returns the schedule of type FacultySchedule
+	 * 
 	 * @return FacultySchedule
 	 */
-	public FacultySchedule getSchedule()
-	{
+	public FacultySchedule getSchedule() {
 		return schedule;
 	}
-	
+
 	/**
-	 * returns true if the number of scheduled courses is greater than 
-	 * the Faculty’s maxCourses
-	 * @return true or false based on if
-	 * the number of scheduled courses is greater than the Faculty's maxCourses
+	 * returns true if the number of scheduled courses is greater than the Faculty’s
+	 * maxCourses
+	 * 
+	 * @return true or false based on if the number of scheduled courses is greater
+	 *         than the Faculty's maxCourses
 	 */
-	public boolean isOverloaded()
-	{
-		if(schedule.getScheduledCourses().length > getMaxCourses())
-		{
+	public boolean isOverloaded() {
+		if (schedule.getScheduledCourses().length > getMaxCourses()) {
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -124,7 +125,7 @@ public class Faculty extends User {
 			return false;
 		Faculty other = (Faculty) obj;
 		return !(maxCourses != other.maxCourses);
-			
+
 	}
 
 	/**
@@ -134,11 +135,8 @@ public class Faculty extends User {
 	 */
 	@Override
 	public String toString() {
-		return this.getFirstName() + "," + this.getLastName() + "," + this.getId() + "," 
-	     + this.getEmail() + "," + this.getPassword() + "," + maxCourses;
+		return this.getFirstName() + "," + this.getLastName() + "," + this.getId() + "," + this.getEmail() + ","
+				+ this.getPassword() + "," + maxCourses;
 	}
-	
-	
 
-	
 }
