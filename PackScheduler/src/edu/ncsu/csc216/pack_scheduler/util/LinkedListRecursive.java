@@ -267,7 +267,7 @@ public class LinkedListRecursive<E> {
 	 * @return element at index
 	 */
 	public E get(int idx) {
-		if (idx < 0 || idx > size()) {
+		if (idx < 0 || idx > size() - 1) {
 			throw new IndexOutOfBoundsException();
 		}
 		return front.get(idx);
@@ -280,12 +280,13 @@ public class LinkedListRecursive<E> {
 	 * @return element at index
 	 */
 	public E remove(int idx) {
-		if (idx < 0 || idx > size()) {
+		if (idx < 0 || idx > size() - 1) {
 			throw new IndexOutOfBoundsException();
 		}
-		
+		if(isEmpty()) {
+			return null;
+		}
 		E removedData;
-		
 		if (idx == 0) {
 			removedData = front.data;
 			front = front.next;
@@ -327,12 +328,8 @@ public class LinkedListRecursive<E> {
 	 * @return element that is replaced
 	 */
 	public E set(int idx, E element) {
-		if (idx < 0 || idx > size()) {
+		if (idx < 0 || idx > size() - 1 || isEmpty()) {
 			throw new IndexOutOfBoundsException();
-		}
-		if (idx == 0 && front == null) {
-			front = new ListNode(element, null);
-			return null;
 		}
 		E previousData;
 		if (idx == 0) {
