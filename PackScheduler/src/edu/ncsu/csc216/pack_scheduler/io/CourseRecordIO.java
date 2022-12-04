@@ -98,20 +98,20 @@ public class CourseRecordIO {
 		try (Scanner lineReader = new Scanner(nextLine);) {
 			lineReader.useDelimiter(",");
 
-			String name, title, section, instructor, meetingDay;
+			String name, title, section, instructorId, meetingDay;
 			int creditHours, enrollmentCap, startTime, endTime;
 
 			name = lineReader.next();
 			title = lineReader.next();
 			section = lineReader.next();
 			creditHours = Integer.parseInt(lineReader.next());
-			instructor = lineReader.next();
+			instructorId = lineReader.next();
 			enrollmentCap = Integer.parseInt(lineReader.next());
 			meetingDay = lineReader.next();
 
 			// Call correct constructor if the course is arranged
 			if ("A".equals(meetingDay)) {
-				course = new Course(name, title, section, creditHours, instructor, enrollmentCap, meetingDay);
+				course = new Course(name, title, section, creditHours, null, enrollmentCap, meetingDay);
 			} else {
 				startTime = Integer.parseInt(lineReader.next());
 				endTime = Integer.parseInt(lineReader.next());
@@ -119,9 +119,9 @@ public class CourseRecordIO {
 				course = new Course(name, title, section, creditHours, null, enrollmentCap, meetingDay, startTime, endTime);
 			}
 			
-			if (RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructor) != null) {
-				course.setInstructorId(instructor);
-				RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructor).getSchedule().addCourseToSchedule(course);
+			if (RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructorId) != null) {
+				course.setInstructorId(instructorId);
+				RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructorId).getSchedule().addCourseToSchedule(course);
 			}
 		
 

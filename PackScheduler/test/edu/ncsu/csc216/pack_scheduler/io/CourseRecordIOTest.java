@@ -40,7 +40,7 @@ public class CourseRecordIOTest {
 	/** Expected results for valid courses in course_records.txt - line 6 */
 	private final String validCourse5 = "CSC216,Software Development Fundamentals,002,3,null,10,MW,1330,1445";
 	/** Expected results for valid courses in course_records.txt - line 7 */
-	private final String validCourse6 = "CSC216,Software Development Fundamentals,601,3,jctetter,10,A";
+	private final String validCourse6 = "CSC216,Software Development Fundamentals,601,3,null,10,A";
 	/** Expected results for valid courses in course_records.txt - line 8 */
 	private final String validCourse7 = "CSC217,Software Development Fundamentals Lab,202,1,null,10,M,1040,1230";
 	/** Expected results for valid courses in course_records.txt - line 9 */
@@ -48,7 +48,7 @@ public class CourseRecordIOTest {
 	/** Expected results for valid courses in course_records.txt - line 10 */
 	private final String validCourse9 = "CSC217,Software Development Fundamentals Lab,223,1,null,10,W,1500,1650";
 	/** Expected results for valid courses in course_records.txt - line 11 */
-	private final String validCourse10 = "CSC217,Software Development Fundamentals Lab,601,1,sesmith5,10,A";
+	private final String validCourse10 = "CSC217,Software Development Fundamentals Lab,601,1,null,10,A";
 	/** Expected results for valid courses in course_records.txt - line 12 */
 	private final String validCourse11 = "CSC226,Discrete Mathematics for Computer Scientists,001,3,null,10,MWF,935,1025";
 	/** Expected results for valid courses in course_records.txt - line 13 */
