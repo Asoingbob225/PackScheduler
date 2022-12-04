@@ -5,3 +5,4 @@ Start Implementing LinkedListRecursive (Peer programmed) | Owner: Jimin Yu, Adha
 
 Finish Implementing and Testing LinkedListRecursive | Owner: Davis Bryant Due: 12/02, Status: Complete
 
+Update and Test Course, CourseRecordIO, and RegistrationManager | Owner: Jimin Yu Due: 12/04, Status: Complete
