@@ -296,6 +296,10 @@ public class RegistrationManager {
 			f.getSchedule().addCourseToSchedule(c);
 			return true;
 		}
+		if(currentUser != registrar)
+		{
+			throw new IllegalArgumentException();
+		}
 		return false;
 		
 	}
@@ -310,6 +314,10 @@ public class RegistrationManager {
 		if (currentUser != null && currentUser == registrar) {
 			f.getSchedule().removeCourseFromSchedule(c);
 			return true;
+		}
+		if(currentUser != registrar)
+		{
+			throw new IllegalArgumentException();
 		}
 		return false;
 	}
