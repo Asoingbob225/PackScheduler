@@ -637,9 +637,10 @@ public class RegistrationManagerTest {
 
 		//logout as registrar then try adding a course with no user, then as a non-registrar user
 		manager.logout();
-		assertFalse(manager.addFacultyToCourse(c3, f1));
-		manager.login("zking", "pw");
-		assertFalse(manager.addFacultyToCourse(c3, f1));
+//		assertFalse(manager.addFacultyToCourse(c3, f1));
+		assertThrows(IllegalArgumentException.class, () -> manager.addFacultyToCourse(c3, f1));
+//		manager.login("zking", "pw");
+//		assertFalse(manager.addFacultyToCourse(c3, f1));
 	}
 
 	/**
@@ -678,9 +679,10 @@ public class RegistrationManagerTest {
 		
 		//logout as registrar then try removing a course as a non-registrar or null currentUser
 		manager.logout();
-		assertFalse(manager.removeFacultyFromCourse(c2, f1));
-		manager.login("zking", "pw");
-		assertFalse(manager.removeFacultyFromCourse(c2, f1));			
+//		assertFalse(manager.removeFacultyFromCourse(c2, f1));
+		assertThrows(IllegalArgumentException.class, () -> manager.removeFacultyFromCourse(c2, f1));
+//		manager.login("zking", "pw");
+//		assertFalse(manager.removeFacultyFromCourse(c2, f1));			
 	
 	}
 		
