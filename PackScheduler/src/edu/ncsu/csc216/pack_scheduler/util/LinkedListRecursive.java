@@ -39,7 +39,7 @@ public class LinkedListRecursive<E> {
 		 * @param element element to be searched for in list
 		 * @return true if element is in list, false otherwise
 		 */
-		private boolean contains(E element) {
+		public boolean contains(E element) {
 			if(data.equals(element)) {
 				return true;
 			} else if (next != null){
@@ -55,7 +55,7 @@ public class LinkedListRecursive<E> {
 		 * @param element element to be added
 		 * @return true if element could be added, false if not
 		 */
-		private boolean add(E element) {
+		public boolean add(E element) {
 			if(next == null) {
 				next = new ListNode(element, null);
 				size++;
@@ -72,7 +72,7 @@ public class LinkedListRecursive<E> {
 		 * @param element element to be added
 		 * @return true if element could be added, false if not
 		 */
-		private boolean add(int idx, E element) {
+		public boolean add(int idx, E element) {
 			if(idx <= 0) {
 				return false;
 			} else if(idx == 1) {
@@ -90,7 +90,7 @@ public class LinkedListRecursive<E> {
 		 * @param idx desired index 
 		 * @return element at index
 		 */
-		private E get(int idx) {
+		public E get(int idx) {
 			if(idx < 0) {
 				return null;
 			} else if(idx == 0) {
@@ -109,7 +109,7 @@ public class LinkedListRecursive<E> {
 		 * @param idx desired index
 		 * @return element at index
 		 */
-		private E remove(int idx) {
+		public E remove(int idx) {
 			if(idx <= 0) {
 				return null;
 			} else if(idx == 1) {
@@ -129,7 +129,7 @@ public class LinkedListRecursive<E> {
 		 * @param element element to be removed
 		 * @return true if element could be removed, false if not
 		 */
-		private boolean remove(E element) {
+		public boolean remove(E element) {
 			if(next != null) {
 				if(next.data.equals(element)) {
 					 next = next.next;
@@ -150,7 +150,7 @@ public class LinkedListRecursive<E> {
 		 * @param element element to be set at index
 		 * @return element that is replaced
 		 */
-		private E set(int idx, E element) {
+		public E set(int idx, E element) {
 			if(idx <= 0) {
 				return null;
 			} else if(idx == 1) {
