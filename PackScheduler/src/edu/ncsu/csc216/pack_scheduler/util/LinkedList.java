@@ -345,9 +345,8 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 * nor add(E) have been called after the last call to next or previous.
 		 * 
 		 * @throws IllegalArgumentException if remove() or add(E) was the last call on
-		 *                                  the list or there has not been a call to
-		 *                                  next() or previous()
-		 * @throws NullPointerException     if the element to set is null
+		 * the list or there has not been a call to next() or previous()
+		 * @throws NullPointerException if the element to set is null
 		 */
 		@Override
 		public void set(E e) {
