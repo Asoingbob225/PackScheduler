@@ -169,7 +169,7 @@ public class LinkedListRecursive<E> {
 	private ListNode front;
 	
 	/** Size of list */
-	private int size;
+	private int size; 
 	
 	
 	/**
